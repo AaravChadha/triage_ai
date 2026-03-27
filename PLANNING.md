@@ -189,7 +189,7 @@ STATE 5: SUMMARY GENERATION
 
 - [ ] **0.3 Frontend Bootstrap**
   - [x] 0.3.1 Scaffold React app with Vite (`npm create vite@latest`)
-  - [ ] 0.3.2 Install Tailwind CSS
+  - [x] 0.3.2 Install Tailwind CSS
   - [ ] 0.3.3 Delete boilerplate, create empty `App.tsx`
   - [ ] 0.3.4 Confirm dev server runs with `npm run dev`
 
