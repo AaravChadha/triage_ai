@@ -174,11 +174,11 @@ STATE 5: SUMMARY GENERATION
 ### Phase 0 — Project Setup `Friday 5–8pm` (~1 hr)
 > Goal: Everyone can run the project locally before writing any real code.
 
-- [ ] **0.1 Repo & Structure**
-  - [ ] 0.1.1 Initialize git repo
-  - [ ] 0.1.2 Create `/frontend` and `/backend` folders
-  - [ ] 0.1.3 Add `.gitignore` (node_modules, __pycache__, .env)
-  - [ ] 0.1.4 Add `.env.example` with required keys (`GROQ_API_KEY`, `GOOGLE_PLACES_API_KEY`)
+- [x] **0.1 Repo & Structure**
+  - [x] 0.1.1 Initialize git repo
+  - [x] 0.1.2 Create `/frontend` and `/backend` folders
+  - [x] 0.1.3 Add `.gitignore` (node_modules, __pycache__, .env)
+  - [x] 0.1.4 Add `.env.example` with required keys (`GROQ_API_KEY`, `GOOGLE_PLACES_API_KEY`)
 
 - [ ] **0.2 Backend Bootstrap**
   - [ ] 0.2.1 Create Python virtual environment
