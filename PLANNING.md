@@ -187,11 +187,11 @@ STATE 5: SUMMARY GENERATION
   - [x] 0.2.4 Create `main.py` with a health check route (`GET /health`)
   - [x] 0.2.5 Confirm server runs with `uvicorn main:app --reload`
 
-- [ ] **0.3 Frontend Bootstrap**
+- [x] **0.3 Frontend Bootstrap**
   - [x] 0.3.1 Scaffold React app with Vite (`npm create vite@latest`)
   - [x] 0.3.2 Install Tailwind CSS
   - [x] 0.3.3 Delete boilerplate, create empty `App.tsx`
-  - [ ] 0.3.4 Confirm dev server runs with `npm run dev`
+  - [x] 0.3.4 Confirm dev server runs with `npm run dev`
 
 - [ ] **0.4 API Keys**
   - [ ] 0.4.1 Sign up at groq.com and get free API key
