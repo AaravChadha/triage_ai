@@ -193,10 +193,10 @@ STATE 5: SUMMARY GENERATION
   - [x] 0.3.3 Delete boilerplate, create empty `App.tsx`
   - [x] 0.3.4 Confirm dev server runs with `npm run dev`
 
-- [ ] **0.4 API Keys**
-  - [ ] 0.4.1 Sign up at groq.com and get free API key
-  - [ ] 0.4.2 Sign up at Google Cloud Console and enable Places API (or prepare mock fallback)
-  - [ ] 0.4.3 Add keys to `.env`
+- [x] **0.4 API Keys**
+  - [x] 0.4.1 Sign up at groq.com and get free API key
+  - [x] 0.4.2 ~~Sign up at Google Cloud Console and enable Places API~~ — skipped, will use mock fallback
+  - [x] 0.4.3 Add keys to `.env`
 
 ---
 
