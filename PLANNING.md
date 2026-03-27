@@ -184,7 +184,7 @@ STATE 5: SUMMARY GENERATION
   - [x] 0.2.1 Create Python virtual environment
   - [x] 0.2.2 Install dependencies: `fastapi`, `uvicorn`, `groq`, `python-dotenv`, `httpx`
   - [x] 0.2.3 Create `requirements.txt`
-  - [ ] 0.2.4 Create `main.py` with a health check route (`GET /health`)
+  - [x] 0.2.4 Create `main.py` with a health check route (`GET /health`)
   - [ ] 0.2.5 Confirm server runs with `uvicorn main:app --reload`
 
 - [ ] **0.3 Frontend Bootstrap**
