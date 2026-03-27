@@ -206,7 +206,7 @@ STATE 5: SUMMARY GENERATION
 
 - [ ] **1.1 Groq Client Setup** ← start here
   - [x] 1.1.1 Create `services/triage_engine.py`
-  - [ ] 1.1.2 Initialize Groq client from env variable
+  - [x] 1.1.2 Initialize Groq client from env variable
   - [ ] 1.1.3 Write a basic test call to confirm connection
 
 - [ ] **1.3 Pydantic Models** ← do second, share with teammates immediately after
