@@ -188,7 +188,7 @@ STATE 5: SUMMARY GENERATION
   - [x] 0.2.5 Confirm server runs with `uvicorn main:app --reload`
 
 - [ ] **0.3 Frontend Bootstrap**
-  - [ ] 0.3.1 Scaffold React app with Vite (`npm create vite@latest`)
+  - [x] 0.3.1 Scaffold React app with Vite (`npm create vite@latest`)
   - [ ] 0.3.2 Install Tailwind CSS
   - [ ] 0.3.3 Delete boilerplate, create empty `App.tsx`
   - [ ] 0.3.4 Confirm dev server runs with `npm run dev`
