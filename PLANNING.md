@@ -205,7 +205,7 @@ STATE 5: SUMMARY GENERATION
 > **Build order:** 1.1 → 1.3 → 1.2 → 1.4 → 1.6 → 1.5 → 1.7 (share schemas after 1.3 to unblock teammates)
 
 - [ ] **1.1 Groq Client Setup** ← start here
-  - [ ] 1.1.1 Create `services/triage_engine.py`
+  - [x] 1.1.1 Create `services/triage_engine.py`
   - [ ] 1.1.2 Initialize Groq client from env variable
   - [ ] 1.1.3 Write a basic test call to confirm connection
 
