@@ -209,9 +209,9 @@ STATE 5: SUMMARY GENERATION
   - [x] 1.1.2 Initialize Groq client from env variable
   - [x] 1.1.3 Write a basic test call to confirm connection
 
-- [ ] **1.3 Pydantic Models** ← do second, share with teammates immediately after
+- [x] **1.3 Pydantic Models** ← do second, share with teammates immediately after
   - [x] 1.3.1 Create `models/schemas.py` — request/response models for each endpoint
-  - [ ] 1.3.2 Create `models/triage_levels.py` — enum for 6 triage levels with required facility capabilities per tier:
+  - [x] 1.3.2 Create `models/triage_levels.py` — enum for 6 triage levels with required facility capabilities per tier:
     - Tier 1 (ER): trauma care, imaging, surgery, ICU
     - Tier 2 (Urgent Care): X-ray, stitches, IV fluids, basic labs
     - Tier 3 (Primary Care): general consultation, prescriptions, referrals
