@@ -204,10 +204,10 @@ STATE 5: SUMMARY GENERATION
 > Goal: The AI can receive symptoms, ask follow-up questions, and return a triage result.
 > **Build order:** 1.1 → 1.3 → 1.2 → 1.4 → 1.6 → 1.5 → 1.7 (share schemas after 1.3 to unblock teammates)
 
-- [ ] **1.1 Groq Client Setup** ← start here
+- [x] **1.1 Groq Client Setup** ← start here
   - [x] 1.1.1 Create `services/triage_engine.py`
   - [x] 1.1.2 Initialize Groq client from env variable
-  - [ ] 1.1.3 Write a basic test call to confirm connection
+  - [x] 1.1.3 Write a basic test call to confirm connection
 
 - [ ] **1.3 Pydantic Models** ← do second, share with teammates immediately after
   - [ ] 1.3.1 Create `models/schemas.py` — request/response models for each endpoint
