@@ -308,7 +308,7 @@ STATE 5: SUMMARY GENERATION
 - [ ] **3.2 `/facilities` Endpoint**
   - [ ] 3.2.1 Accept triage level + lat/lng coordinates
   - [ ] 3.2.2 Call facility service and return results (including wait time field)
-  - [ ] 3.2.3 Add mock fallback: hardcoded facility list defined as a static dict in `facility_service.py`, keyed by triage level, used if Places API is unavailable or returns no results
+  - [ ] 3.2.3 Add mock fallback: hardcoded facility list defined as a static dict in `facility_service.py`, keyed by triage level, used if Places API is unavailable or returns no results — mock facilities should be real or realistic locations near Purdue Indianapolis campus (demo will be presented there)
 
 - [ ] **3.3 Frontend Location + Facility List**
   - [ ] 3.3.1 Request browser geolocation on triage completion
