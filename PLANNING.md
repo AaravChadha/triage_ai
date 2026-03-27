@@ -181,7 +181,7 @@ STATE 5: SUMMARY GENERATION
   - [x] 0.1.4 Add `.env.example` with required keys (`GROQ_API_KEY`, `GOOGLE_PLACES_API_KEY`)
 
 - [ ] **0.2 Backend Bootstrap**
-  - [ ] 0.2.1 Create Python virtual environment
+  - [x] 0.2.1 Create Python virtual environment
   - [ ] 0.2.2 Install dependencies: `fastapi`, `uvicorn`, `groq`, `python-dotenv`, `httpx`
   - [ ] 0.2.3 Create `requirements.txt`
   - [ ] 0.2.4 Create `main.py` with a health check route (`GET /health`)
