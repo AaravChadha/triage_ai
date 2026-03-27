@@ -180,12 +180,12 @@ STATE 5: SUMMARY GENERATION
   - [x] 0.1.3 Add `.gitignore` (node_modules, __pycache__, .env)
   - [x] 0.1.4 Add `.env.example` with required keys (`GROQ_API_KEY`, `GOOGLE_PLACES_API_KEY`)
 
-- [ ] **0.2 Backend Bootstrap**
+- [x] **0.2 Backend Bootstrap**
   - [x] 0.2.1 Create Python virtual environment
   - [x] 0.2.2 Install dependencies: `fastapi`, `uvicorn`, `groq`, `python-dotenv`, `httpx`
   - [x] 0.2.3 Create `requirements.txt`
   - [x] 0.2.4 Create `main.py` with a health check route (`GET /health`)
-  - [ ] 0.2.5 Confirm server runs with `uvicorn main:app --reload`
+  - [x] 0.2.5 Confirm server runs with `uvicorn main:app --reload`
 
 - [ ] **0.3 Frontend Bootstrap**
   - [ ] 0.3.1 Scaffold React app with Vite (`npm create vite@latest`)
