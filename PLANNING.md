@@ -202,21 +202,14 @@ STATE 5: SUMMARY GENERATION
 
 ### Phase 1 — Core AI Backend `Friday 8pm → Saturday 12pm` (~3–4 hrs, includes overnight)
 > Goal: The AI can receive symptoms, ask follow-up questions, and return a triage result.
+> **Build order:** 1.1 → 1.3 → 1.2 → 1.4 → 1.6 → 1.5 → 1.7 (share schemas after 1.3 to unblock teammates)
 
-- [ ] **1.1 Groq Client Setup**
+- [ ] **1.1 Groq Client Setup** ← start here
   - [ ] 1.1.1 Create `services/triage_engine.py`
   - [ ] 1.1.2 Initialize Groq client from env variable
   - [ ] 1.1.3 Write a basic test call to confirm connection
 
-- [ ] **1.2 Conversation Prompts**
-  - [ ] 1.2.1 Create `prompts/conversation.py` — system prompt for follow-up questioning
-    > **Ask before building:** How many follow-up questions max? What tone (clinical vs friendly)? Should the AI explain why it's asking? When does it decide it has enough info to stop asking?
-  - [ ] 1.2.2 Create `prompts/triage.py` — system prompt for severity classification (must return JSON including required care tier and what that tier must be capable of)
-    > **Ask before building:** Confirm the full JSON schema expected — fields, types, and which are required vs optional.
-  - [ ] 1.2.3 Create `prompts/summary.py` — system prompt for patient summary generation
-    > **Ask before building:** What fields should the summary include? What order? Should it read like a clinical note or plain English?
-
-- [ ] **1.3 Pydantic Models**
+- [ ] **1.3 Pydantic Models** ← do second, share with teammates immediately after
   - [ ] 1.3.1 Create `models/schemas.py` — request/response models for each endpoint
     > **Ask before building:** Confirm the fields for each request/response shape before defining models.
   - [ ] 1.3.2 Create `models/triage_levels.py` — enum for 6 triage levels with required facility capabilities per tier:
@@ -226,25 +219,33 @@ STATE 5: SUMMARY GENERATION
     - Tier 4 (Telehealth): video consult, e-prescriptions only
     - Tier 5 (Self-Care): no facility needed
 
-- [ ] **1.4 Triage → Tier Mapping**
+- [ ] **1.2 Conversation Prompts** ← do third
+  - [ ] 1.2.1 Create `prompts/conversation.py` — system prompt for follow-up questioning
+    > **Ask before building:** How many follow-up questions max? What tone (clinical vs friendly)? Should the AI explain why it's asking? When does it decide it has enough info to stop asking?
+  - [ ] 1.2.2 Create `prompts/triage.py` — system prompt for severity classification (must return JSON including required care tier and what that tier must be capable of)
+    > **Ask before building:** Confirm the full JSON schema expected — fields, types, and which are required vs optional.
+  - [ ] 1.2.3 Create `prompts/summary.py` — system prompt for patient summary generation
+    > **Ask before building:** What fields should the summary include? What order? Should it read like a clinical note or plain English?
+
+- [ ] **1.4 Triage → Tier Mapping** ← do fourth
   - [ ] 1.4.1 AI triage output must include `required_tier` and `required_capabilities` (e.g., `["imaging", "IV fluids"]`)
   - [ ] 1.4.2 These fields are passed directly to the facility service to filter eligible facilities
   - [ ] 1.4.3 Validate that the AI never recommends a tier incapable of treating the identified condition (e.g., a laceration needing stitches cannot be sent to Tier 4 Telehealth)
 
-- [ ] **1.5 `/chat` Endpoint**
+- [ ] **1.6 Emergency Detector** ← do fifth (needed before /chat)
+  - [ ] 1.6.1 Create `services/emergency_detector.py`
+  - [ ] 1.6.2 Define keyword/phrase list for red flag symptoms
+  - [ ] 1.6.3 Run check on every incoming message before passing to Groq
+  - [ ] 1.6.4 Return `is_emergency: true` flag in `/chat` response if triggered
+
+- [ ] **1.5 `/chat` Endpoint** ← do sixth, unblocks Teammate 1
   - [ ] 1.5.1 Accept message + conversation history
   - [ ] 1.5.2 Run emergency detector first — if triggered, return immediately with `is_emergency: true` without calling Groq
   - [ ] 1.5.3 Pass to Groq with conversation system prompt
   - [ ] 1.5.4 Return AI response + updated history
   - [ ] 1.5.5 Test with Postman or curl
 
-- [ ] **1.6 Emergency Detector**
-  - [ ] 1.6.1 Create `services/emergency_detector.py`
-  - [ ] 1.6.2 Define keyword/phrase list for red flag symptoms
-  - [ ] 1.6.3 Run check on every incoming message before passing to Groq
-  - [ ] 1.6.4 Return `is_emergency: true` flag in `/chat` response if triggered
-
-- [ ] **1.7 `/triage` Endpoint**
+- [ ] **1.7 `/triage` Endpoint** ← do last, unblocks Teammates 1 + 2
   - [ ] 1.7.1 Accept full conversation history
   - [ ] 1.7.2 Call Groq with triage classification prompt
   - [ ] 1.7.3 Parse and validate returned JSON
