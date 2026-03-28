@@ -219,8 +219,7 @@ STATE 5: SUMMARY GENERATION
     - Tier 5 (Self-Care): no facility needed
 
 - [ ] **1.2 Conversation Prompts** ← do third
-  - [ ] 1.2.1 Create `prompts/conversation.py` — system prompt for follow-up questioning
-    > **Ask before building:** How many follow-up questions max? What tone (clinical vs friendly)? Should the AI explain why it's asking? When does it decide it has enough info to stop asking?
+  - [x] 1.2.1 Create `prompts/conversation.py` — system prompt for follow-up questioning (clinical tone, no explanations, 3-5 questions max, EMERGENCY_DETECTED / TRIAGE_READY signals)
   - [ ] 1.2.2 Create `prompts/triage.py` — system prompt for severity classification (must return JSON including required care tier and what that tier must be capable of)
     > **Ask before building:** Confirm the full JSON schema expected — fields, types, and which are required vs optional.
   - [ ] 1.2.3 Create `prompts/summary.py` — system prompt for patient summary generation
