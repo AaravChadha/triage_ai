@@ -40,6 +40,7 @@ GENERAL (always ask if not already covered):
 - Current medications
 - Known allergies
 - Age (if not obvious from context)
+- Biological sex — but ONLY ask when symptoms are sex-specific (e.g., abdominal/pelvic pain, chest pain in older adults, urinary symptoms). Do not ask for clearly sex-neutral symptoms like a cough or cut.
 
 SKIP any question the patient has already answered. Move to the next relevant one.
 
