@@ -224,9 +224,9 @@ STATE 5: SUMMARY GENERATION
   - [x] 1.2.3 Create `prompts/summary.py` — system prompt for pre-arrival clinical summary sent to facility, structured JSON, preliminary AI assessment language
 
 - [ ] **1.4 Triage → Tier Mapping** ← do fourth
-  - [ ] 1.4.1 AI triage output must include `required_tier` and `required_capabilities` (e.g., `["imaging", "IV fluids"]`)
-  - [ ] 1.4.2 These fields are passed directly to the facility service to filter eligible facilities
-  - [ ] 1.4.3 Validate that the AI never recommends a tier incapable of treating the identified condition (e.g., a laceration needing stitches cannot be sent to Tier 4 Telehealth)
+  - [x] 1.4.1 AI triage output must include `required_tier` and `required_capabilities` (e.g., `["imaging", "IV fluids"]`) — built into triage prompt (1.2.2) and schema (1.3.1)
+  - [ ] 1.4.2 These fields are passed directly to the facility service to filter eligible facilities — **deferred to Phase 3 (Teammate 2 builds facility service, Aarav integrates)**
+  - [ ] 1.4.3 Validate that the AI never recommends a tier incapable of treating the identified condition — **deferred to Phase 3 (add backend validation after facility service exists)**
 
 - [ ] **1.6 Emergency Detector** ← do fifth (needed before /chat)
   - [ ] 1.6.1 Create `services/emergency_detector.py`
