@@ -269,7 +269,7 @@ STATE 5: SUMMARY GENERATION
 
 - [ ] **2.3 Emergency Alert**
   - [ ] 2.3.1 Build `EmergencyAlert.tsx` — full-screen red overlay
-  - [ ] 2.3.2 Show bold "Call 911 immediately" message with emergency icon
+  - [ ] 2.3.2 Show bold "Call 911 immediately" message with emergency icon + "Continue" button if the user believes it's not an emergency
   - [ ] 2.3.3 Trigger when backend returns `is_emergency: true`
   - [ ] 2.3.4 Add client-side keyword check as a first-pass layer (no API wait) — reuse patterns from `services/emergency_detector.py`
 

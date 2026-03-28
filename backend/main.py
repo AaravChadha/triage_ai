@@ -27,7 +27,7 @@ async def chat(req: ChatRequest):
     history = req.history + [Message(role="user", content=req.message)]
 
     if check_emergency(req.message):
-        history.append(Message(role="assistant", content="EMERGENCY DETECTED — Call 911 immediately. If you cannot transport yourself, stay where you are and wait for paramedics."))
+        history.append(Message(role="assistant", content="EMERGENCY DETECTED — Call 911 immediately. If you cannot transport yourself, stay where you are and wait for paramedics. If you believe this is not an emergency, you can continue describing your symptoms."))
         return ChatResponse(
             response=history[-1].content,
             history=history,
@@ -48,7 +48,7 @@ async def chat(req: ChatRequest):
 
     # AI detected emergency from context (prompt tells it to say EMERGENCY_DETECTED)
     if "EMERGENCY_DETECTED" in ai_message:
-        emergency_msg = "EMERGENCY DETECTED — Call 911 immediately. If you cannot transport yourself, stay where you are and wait for paramedics."
+        emergency_msg = "EMERGENCY DETECTED — Call 911 immediately. If you cannot transport yourself, stay where you are and wait for paramedics. If you believe this is not an emergency, you can continue describing your symptoms."
         history.append(Message(role="assistant", content=emergency_msg))
         return ChatResponse(
             response=emergency_msg,
