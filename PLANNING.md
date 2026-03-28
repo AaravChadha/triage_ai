@@ -385,6 +385,30 @@ This arc demonstrates every feature in under 3 minutes.
 
 ---
 
+## Phase 6 — Submission Checklist `Sunday 3–4pm`
+> Goal: Meet all HackIndy submission requirements before deadline.
+
+- [ ] **6.1 README.md**
+  - [ ] 6.1.1 Write project description — what it does and why it matters
+  - [ ] 6.1.2 List all technologies/frameworks used (React, Vite, Tailwind, FastAPI, Groq, llama-3.3-70b-versatile)
+  - [ ] 6.1.3 Clear explanation of what was built during the event (not before)
+  - [ ] 6.1.4 AI usage disclosure — list all AI tools used (Claude Code for development assistance, Groq API for triage AI). Be specific about what each tool did. Do NOT misrepresent AI-generated code as hand-written.
+  - [ ] 6.1.5 Credit all libraries, APIs, and tools used
+  - [ ] 6.1.6 Setup instructions: clone → create `backend/.env` with your own `GROQ_API_KEY` (free at groq.com) → install → run
+
+- [ ] **6.2 Repo Cleanup**
+  - [ ] 6.2.1 Confirm `.env` is NOT committed (check with `git log --all -- '*.env'`)
+  - [ ] 6.2.2 Confirm `.env.example` exists with placeholder keys
+  - [ ] 6.2.3 Remove any debug/test code
+  - [ ] 6.2.4 Confirm repo is public on GitHub
+
+- [ ] **6.3 Final Checks**
+  - [ ] 6.3.1 Submit GitHub repo link to HackIndy submission portal
+  - [ ] 6.3.2 Verify the app runs from a fresh clone (after adding your own `.env` with Groq key)
+  - [ ] 6.3.3 Double-check README covers all submission requirements: description, tech stack, what was built, AI disclosure
+
+---
+
 ## Future Extensions (mention to judges, don't build)
 - Hospital wait time data integration
 - Insurance network compatibility
