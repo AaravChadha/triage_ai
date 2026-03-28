@@ -1,7 +1,7 @@
 import json
 from fastapi import FastAPI, HTTPException
 from fastapi.middleware.cors import CORSMiddleware
-from models.schemas import ChatRequest, ChatResponse, TriageRequest, TriageResponse, Message
+from models.schemas import ChatRequest, ChatResponse, TriageRequest, TriageResponse, SummaryRequest, SummaryResponse, Message
 from services.emergency_detector import check_emergency
 from services.triage_engine import client, MODEL
 from prompts.conversation import CONVERSATION_SYSTEM_PROMPT
@@ -113,3 +113,8 @@ async def triage(req: TriageRequest):
             continue
 
     raise HTTPException(status_code=500, detail="AI returned invalid triage JSON")
+
+
+@app.post("/summary", response_model=SummaryResponse)
+async def summary(req: SummaryRequest):
+    pass
