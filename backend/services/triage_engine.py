@@ -5,11 +5,12 @@ from dotenv import load_dotenv
 load_dotenv(Path(__file__).parent.parent / ".env")
 
 client = Groq()
+MODEL = "llama-3.3-70b-versatile"
 
 
 def test_connection():
     response = client.chat.completions.create(
-        model="llama-3.3-70b-versatile",
+        model=MODEL,
         messages=[{"role": "user", "content": "Say 'Groq connection successful' and nothing else."}],
     )
     return response.choices[0].message.content

@@ -3,7 +3,7 @@ from fastapi import FastAPI, HTTPException
 from fastapi.middleware.cors import CORSMiddleware
 from models.schemas import ChatRequest, ChatResponse, TriageRequest, TriageResponse, Message
 from services.emergency_detector import check_emergency
-from services.triage_engine import client
+from services.triage_engine import client, MODEL
 from prompts.conversation import CONVERSATION_SYSTEM_PROMPT
 from prompts.triage import TRIAGE_SYSTEM_PROMPT
 
@@ -37,12 +37,14 @@ async def chat(req: ChatRequest):
     messages = [{"role": "system", "content": CONVERSATION_SYSTEM_PROMPT}]
     messages += [{"role": m.role, "content": m.content} for m in history]
 
-    response = client.chat.completions.create(
-        model="llama-3.3-70b-versatile",
-        messages=messages,
-    )
-
-    ai_message = response.choices[0].message.content
+    try:
+        response = client.chat.completions.create(
+            model=MODEL,
+            messages=messages,
+        )
+        ai_message = response.choices[0].message.content
+    except Exception:
+        raise HTTPException(status_code=503, detail="AI service is temporarily unavailable. Please try again. If you are experiencing a medical emergency, call 911 immediately.")
 
     # AI detected emergency from context (prompt tells it to say EMERGENCY_DETECTED)
     if "EMERGENCY_DETECTED" in ai_message:
@@ -52,6 +54,17 @@ async def chat(req: ChatRequest):
             response=emergency_msg,
             history=history,
             is_emergency=True,
+        )
+
+    # AI has enough info to triage
+    if "TRIAGE_READY" in ai_message:
+        ready_msg = "I have enough information. Ready to analyze your symptoms."
+        history.append(Message(role="assistant", content=ready_msg))
+        return ChatResponse(
+            response=ready_msg,
+            history=history,
+            is_emergency=False,
+            triage_ready=True,
         )
 
     history.append(Message(role="assistant", content=ai_message))
@@ -77,12 +90,14 @@ async def triage(req: TriageRequest):
 
     # Try up to 2 times in case of empty or invalid response
     for attempt in range(2):
-        response = client.chat.completions.create(
-            model="llama-3.3-70b-versatile",
-            messages=messages,
-        )
-
-        ai_message = response.choices[0].message.content or ""
+        try:
+            response = client.chat.completions.create(
+                model=MODEL,
+                messages=messages,
+            )
+            ai_message = response.choices[0].message.content or ""
+        except Exception:
+            raise HTTPException(status_code=503, detail="AI service is temporarily unavailable. Please try again. If you are experiencing a medical emergency, call 911 immediately.")
 
         # Strip markdown code fences if the AI wraps JSON in ```json ... ```
         cleaned = ai_message.strip()

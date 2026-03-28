@@ -18,6 +18,7 @@ class ChatResponse(BaseModel):
     response: str
     history: list[Message]
     is_emergency: bool
+    triage_ready: bool = False
 
 
 # --- /triage ---
