@@ -336,10 +336,10 @@ STATE 5: SUMMARY GENERATION
   - [x] 4.1.2 Call Groq with summary prompt
   - [x] 4.1.3 Return structured summary: chief complaint, symptom list, duration, severity, AI notes
 
-- [ ] **4.2 Summary UI**
-  - [ ] 4.2.1 Build `PatientSummary.tsx` — clean formatted card
-  - [ ] 4.2.2 Show all fields clearly in this order: chief complaint → symptoms → duration → pain level → relevant history → severity classification → recommended care → AI notes
-  - [ ] 4.2.3 Add "Send to Facility" button that calls `POST /notify` (mock)
+- [x] **4.2 Summary UI**
+  - [x] 4.2.1 Build `PatientSummary.tsx` — clean formatted card
+  - [x] 4.2.2 Show all fields clearly in this order: chief complaint → symptoms → duration → pain level → relevant history → severity classification → recommended care → AI notes
+  - [x] 4.2.3 Add "Send to Facility" button that calls `POST /notify` (mock)
 
 - [x] **4.3 Mock Hospital Notification**
   - [x] 4.3.1 Create `POST /notify` endpoint
