@@ -228,7 +228,7 @@ STATE 5: SUMMARY GENERATION
   - 1.4.2 and 1.4.3 moved to Phase 3.5 (needs facility service first)
 
 - [ ] **1.6 Emergency Detector** ← do fifth (needed before /chat)
-  - [ ] 1.6.1 Create `services/emergency_detector.py`
+  - [x] 1.6.1 Create `services/emergency_detector.py`
   - [ ] 1.6.2 Define keyword/phrase list for red flag symptoms
   - [ ] 1.6.3 Run check on every incoming message before passing to Groq
   - [ ] 1.6.4 Return `is_emergency: true` flag in `/chat` response if triggered
