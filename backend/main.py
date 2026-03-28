@@ -1,7 +1,7 @@
 import json
 from fastapi import FastAPI, HTTPException
 from fastapi.middleware.cors import CORSMiddleware
-from models.schemas import ChatRequest, ChatResponse, TriageRequest, TriageResponse, SummaryRequest, SummaryResponse, Message
+from models.schemas import ChatRequest, ChatResponse, TriageRequest, TriageResponse, SummaryRequest, SummaryResponse, NotifyRequest, NotifyResponse, Message
 from services.emergency_detector import check_emergency
 from services.triage_engine import client, MODEL
 from prompts.conversation import CONVERSATION_SYSTEM_PROMPT
@@ -169,3 +169,14 @@ async def summary(req: SummaryRequest):
             continue
 
     raise HTTPException(status_code=500, detail="AI returned invalid summary JSON")
+
+
+@app.post("/notify", response_model=NotifyResponse)
+async def notify(req: NotifyRequest):
+    print(f"[NOTIFY] Summary sent to {req.facility_name}")
+    print(f"  Chief complaint: {req.summary.chief_complaint}")
+    print(f"  Severity: {req.summary.severity}")
+    return NotifyResponse(
+        success=True,
+        message=f"Summary sent to {req.facility_name}",
+    )

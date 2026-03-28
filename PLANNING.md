@@ -341,10 +341,10 @@ STATE 5: SUMMARY GENERATION
   - [ ] 4.2.2 Show all fields clearly in this order: chief complaint → symptoms → duration → pain level → relevant history → severity classification → recommended care → AI notes
   - [ ] 4.2.3 Add "Send to Facility" button that calls `POST /notify` (mock)
 
-- [ ] **4.3 Mock Hospital Notification**
-  - [ ] 4.3.1 Create `POST /notify` endpoint
-  - [ ] 4.3.2 Accept summary payload, log it, return success
-  - [ ] 4.3.3 Show confirmation toast on frontend: "Summary sent to [Facility Name]"
+- [x] **4.3 Mock Hospital Notification**
+  - [x] 4.3.1 Create `POST /notify` endpoint
+  - [x] 4.3.2 Accept summary payload, log it, return success
+  - [ ] 4.3.3 Show confirmation toast on frontend: "Summary sent to [Facility Name]" — Neil
 
 ---
 
