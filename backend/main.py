@@ -1,4 +1,5 @@
-from fastapi import FastAPI
+import json
+from fastapi import FastAPI, HTTPException
 from fastapi.middleware.cors import CORSMiddleware
 from models.schemas import ChatRequest, ChatResponse, TriageRequest, TriageResponse, Message
 from services.emergency_detector import check_emergency
@@ -73,3 +74,17 @@ async def triage(req: TriageRequest):
     )
 
     ai_message = response.choices[0].message.content
+
+    # Strip markdown code fences if the AI wraps JSON in ```json ... ```
+    cleaned = ai_message.strip()
+    if cleaned.startswith("```"):
+        cleaned = cleaned.split("\n", 1)[1]
+        cleaned = cleaned.rsplit("```", 1)[0]
+
+    try:
+        data = json.loads(cleaned)
+        result = TriageResponse(**data)
+    except (json.JSONDecodeError, Exception):
+        raise HTTPException(status_code=500, detail="AI returned invalid triage JSON")
+
+    return result
