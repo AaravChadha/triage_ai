@@ -1,24 +1,18 @@
+# Single keywords/phrases that are almost always emergencies on their own
 EMERGENCY_PATTERNS = [
     # Cardiac
-    "chest pain",
-    "chest tightness",
     "heart attack",
     "cardiac arrest",
 
     # Stroke
-    "can't move my arm",
-    "can't move my leg",
     "face drooping",
     "slurred speech",
-    "sudden numbness",
     "stroke",
 
-    # Breathing
-    "can't breathe",
+    # Breathing — only clearly severe ones
     "not breathing",
     "stopped breathing",
     "choking",
-    "shortness of breath",
 
     # Severe bleeding
     "won't stop bleeding",
@@ -29,17 +23,14 @@ EMERGENCY_PATTERNS = [
     # Consciousness
     "unconscious",
     "unresponsive",
-    "passed out",
     "not waking up",
     "seizure",
     "convulsions",
 
-    # Allergic reaction
+    # Allergic reaction — severe
     "anaphylaxis",
     "throat swelling",
     "tongue swelling",
-    "can't swallow",
-    "allergic reaction",
 
     # Other
     "overdose",
@@ -49,7 +40,30 @@ EMERGENCY_PATTERNS = [
     "stabbed",
 ]
 
+# Combinations — only flag emergency if BOTH items appear in the message
+# (individually these can be minor, together they're serious)
+EMERGENCY_COMBINATIONS = [
+    ("chest pain", "shortness of breath"),
+    ("chest pain", "can't breathe"),
+    ("chest tightness", "shortness of breath"),
+    ("chest tightness", "can't breathe"),
+    ("chest pain", "arm pain"),
+    ("chest pain", "jaw pain"),
+    ("allergic reaction", "can't breathe"),
+    ("allergic reaction", "swelling"),
+    ("sudden numbness", "can't move"),
+    ("passed out", "chest pain"),
+    ("passed out", "hit my head"),
+]
+
 
 def check_emergency(message: str) -> bool:
     text = message.lower()
-    return any(pattern in text for pattern in EMERGENCY_PATTERNS)
+
+    if any(pattern in text for pattern in EMERGENCY_PATTERNS):
+        return True
+
+    if any(a in text and b in text for a, b in EMERGENCY_COMBINATIONS):
+        return True
+
+    return False
