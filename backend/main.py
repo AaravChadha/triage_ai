@@ -65,26 +65,36 @@ async def chat(req: ChatRequest):
 
 @app.post("/triage", response_model=TriageResponse)
 async def triage(req: TriageRequest):
+    # Filter out TRIAGE_READY/EMERGENCY_DETECTED signals from history
+    filtered = [m for m in req.history if m.content not in ("TRIAGE_READY", "EMERGENCY_DETECTED")]
+
+    # If last message is from assistant, the user never answered — add a note so the AI knows
+    if filtered and filtered[-1].role == "assistant":
+        filtered.append(Message(role="user", content="(patient did not respond, proceed with triage based on available information)"))
+
     messages = [{"role": "system", "content": TRIAGE_SYSTEM_PROMPT}]
-    messages += [{"role": m.role, "content": m.content} for m in req.history]
+    messages += [{"role": m.role, "content": m.content} for m in filtered]
 
-    response = client.chat.completions.create(
-        model="llama-3.3-70b-versatile",
-        messages=messages,
-    )
+    # Try up to 2 times in case of empty or invalid response
+    for attempt in range(2):
+        response = client.chat.completions.create(
+            model="llama-3.3-70b-versatile",
+            messages=messages,
+        )
 
-    ai_message = response.choices[0].message.content
+        ai_message = response.choices[0].message.content or ""
 
-    # Strip markdown code fences if the AI wraps JSON in ```json ... ```
-    cleaned = ai_message.strip()
-    if cleaned.startswith("```"):
-        cleaned = cleaned.split("\n", 1)[1]
-        cleaned = cleaned.rsplit("```", 1)[0]
+        # Strip markdown code fences if the AI wraps JSON in ```json ... ```
+        cleaned = ai_message.strip()
+        if cleaned.startswith("```"):
+            cleaned = cleaned.split("\n", 1)[1]
+            cleaned = cleaned.rsplit("```", 1)[0]
+        cleaned = cleaned.strip()
 
-    try:
-        data = json.loads(cleaned)
-        result = TriageResponse(**data)
-    except (json.JSONDecodeError, Exception):
-        raise HTTPException(status_code=500, detail="AI returned invalid triage JSON")
+        try:
+            data = json.loads(cleaned)
+            return TriageResponse(**data)
+        except (json.JSONDecodeError, Exception):
+            continue
 
-    return result
+    raise HTTPException(status_code=500, detail="AI returned invalid triage JSON")
