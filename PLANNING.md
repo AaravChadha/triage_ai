@@ -331,10 +331,10 @@ STATE 5: SUMMARY GENERATION
 ### Phase 4 — Patient Summary `Sunday 10am → 1pm` (~1–2 hrs)
 > Goal: Generate and display a structured patient summary that could be sent to a facility. This is the demo "wow" moment — prioritize this over facility polish if time is short.
 
-- [ ] **4.1 `/summary` Endpoint**
+- [x] **4.1 `/summary` Endpoint**
   - [x] 4.1.1 Accept full conversation + triage result
   - [x] 4.1.2 Call Groq with summary prompt
-  - [ ] 4.1.3 Return structured summary: chief complaint, symptom list, duration, severity, AI notes
+  - [x] 4.1.3 Return structured summary: chief complaint, symptom list, duration, severity, AI notes
 
 - [ ] **4.2 Summary UI**
   - [ ] 4.2.1 Build `PatientSummary.tsx` — clean formatted card

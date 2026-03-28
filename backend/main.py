@@ -125,11 +125,26 @@ async def summary(req: SummaryRequest):
     messages += [{"role": m.role, "content": m.content} for m in req.history if m.content not in ("TRIAGE_READY", "I have enough information. Ready to analyze your symptoms.")]
     messages.append({"role": "user", "content": triage_context})
 
-    try:
-        response = client.chat.completions.create(
-            model=MODEL,
-            messages=messages,
-        )
-        ai_message = response.choices[0].message.content or ""
-    except Exception:
-        raise HTTPException(status_code=503, detail="AI service is temporarily unavailable. Please try again.")
+    for attempt in range(2):
+        try:
+            response = client.chat.completions.create(
+                model=MODEL,
+                messages=messages,
+            )
+            ai_message = response.choices[0].message.content or ""
+        except Exception:
+            raise HTTPException(status_code=503, detail="AI service is temporarily unavailable. Please try again.")
+
+        cleaned = ai_message.strip()
+        if cleaned.startswith("```"):
+            cleaned = cleaned.split("\n", 1)[1]
+            cleaned = cleaned.rsplit("```", 1)[0]
+        cleaned = cleaned.strip()
+
+        try:
+            data = json.loads(cleaned)
+            return SummaryResponse(**data)
+        except (json.JSONDecodeError, Exception):
+            continue
+
+    raise HTTPException(status_code=500, detail="AI returned invalid summary JSON")
