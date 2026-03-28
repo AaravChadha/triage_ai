@@ -218,11 +218,10 @@ STATE 5: SUMMARY GENERATION
     - Tier 4 (Telehealth): video consult, e-prescriptions only
     - Tier 5 (Self-Care): no facility needed
 
-- [ ] **1.2 Conversation Prompts** ← do third
+- [x] **1.2 Conversation Prompts** ← do third
   - [x] 1.2.1 Create `prompts/conversation.py` — system prompt for follow-up questioning (clinical tone, no explanations, 3-5 questions max, EMERGENCY_DETECTED / TRIAGE_READY signals)
   - [x] 1.2.2 Create `prompts/triage.py` — system prompt for severity classification (Tier 0 shows 911 + nearest ER, returns JSON with tier, capabilities, confidence)
-  - [ ] 1.2.3 Create `prompts/summary.py` — system prompt for patient summary generation
-    > **Ask before building:** What fields should the summary include? What order? Should it read like a clinical note or plain English?
+  - [x] 1.2.3 Create `prompts/summary.py` — system prompt for pre-arrival clinical summary sent to facility, structured JSON, preliminary AI assessment language
 
 - [ ] **1.4 Triage → Tier Mapping** ← do fourth
   - [ ] 1.4.1 AI triage output must include `required_tier` and `required_capabilities` (e.g., `["imaging", "IV fluids"]`)
