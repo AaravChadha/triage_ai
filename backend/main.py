@@ -4,6 +4,7 @@ from models.schemas import ChatRequest, ChatResponse, TriageRequest, TriageRespo
 from services.emergency_detector import check_emergency
 from services.triage_engine import client
 from prompts.conversation import CONVERSATION_SYSTEM_PROMPT
+from prompts.triage import TRIAGE_SYSTEM_PROMPT
 
 app = FastAPI(title="Triage AI")
 
@@ -63,4 +64,12 @@ async def chat(req: ChatRequest):
 
 @app.post("/triage", response_model=TriageResponse)
 async def triage(req: TriageRequest):
-    pass
+    messages = [{"role": "system", "content": TRIAGE_SYSTEM_PROMPT}]
+    messages += [{"role": m.role, "content": m.content} for m in req.history]
+
+    response = client.chat.completions.create(
+        model="llama-3.3-70b-versatile",
+        messages=messages,
+    )
+
+    ai_message = response.choices[0].message.content
