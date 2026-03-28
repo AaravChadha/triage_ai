@@ -289,9 +289,9 @@ STATE 5: SUMMARY GENERATION
 ### Phase 3 — Facility Finder `Saturday 5pm → Sunday 10am` (~4–5 hrs, includes overnight)
 > Goal: After triage, user sees nearby facilities appropriate for their care level. Using mock facility data near Purdue Indianapolis campus (can swap in Google Places API later if free credits available).
 
-- [ ] **3.1 Backend Facility Service**
-  - [ ] 3.1.1 Create `services/facility_service.py`
-  - [ ] 3.1.2 ~~Implement Google Places API~~ — using mock data for now (can swap in Google Places API if MLH provides free Google Cloud credits)
+- [x] **3.1 Backend Facility Service**
+  - [x] 3.1.1 Create `services/facility_service.py`
+  - [x] 3.1.2 ~~Implement Google Places API~~ — using mock data for now (can swap in Google Places API if MLH provides free Google Cloud credits)
   - [ ] 3.1.3 Map triage level → facility type (e.g., Level 2 → "urgent care")
   - [ ] 3.1.4 Filter facilities by `required_capabilities` from triage output — a facility must be capable of treating the condition before it is considered (e.g., don't send a patient needing stitches to a telehealth provider)
   - [ ] 3.1.5 Return top 3 results with name, address, distance, open status — from capable facilities only
