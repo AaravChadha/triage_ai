@@ -333,7 +333,7 @@ STATE 5: SUMMARY GENERATION
 
 - [ ] **4.1 `/summary` Endpoint**
   - [x] 4.1.1 Accept full conversation + triage result
-  - [ ] 4.1.2 Call Groq with summary prompt
+  - [x] 4.1.2 Call Groq with summary prompt
   - [ ] 4.1.3 Return structured summary: chief complaint, symptom list, duration, severity, AI notes
 
 - [ ] **4.2 Summary UI**

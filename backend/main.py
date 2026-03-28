@@ -6,6 +6,7 @@ from services.emergency_detector import check_emergency
 from services.triage_engine import client, MODEL
 from prompts.conversation import CONVERSATION_SYSTEM_PROMPT
 from prompts.triage import TRIAGE_SYSTEM_PROMPT
+from prompts.summary import SUMMARY_SYSTEM_PROMPT
 
 app = FastAPI(title="Triage AI")
 
@@ -117,4 +118,18 @@ async def triage(req: TriageRequest):
 
 @app.post("/summary", response_model=SummaryResponse)
 async def summary(req: SummaryRequest):
-    pass
+    # Build context: conversation history + triage result
+    triage_context = f"TRIAGE RESULT: severity={req.triage_result.severity}, tier={req.triage_result.required_tier}, confidence={req.triage_result.confidence}, key_symptoms={req.triage_result.key_symptoms}, reasoning={req.triage_result.reasoning}"
+
+    messages = [{"role": "system", "content": SUMMARY_SYSTEM_PROMPT}]
+    messages += [{"role": m.role, "content": m.content} for m in req.history if m.content not in ("TRIAGE_READY", "I have enough information. Ready to analyze your symptoms.")]
+    messages.append({"role": "user", "content": triage_context})
+
+    try:
+        response = client.chat.completions.create(
+            model=MODEL,
+            messages=messages,
+        )
+        ai_message = response.choices[0].message.content or ""
+    except Exception:
+        raise HTTPException(status_code=503, detail="AI service is temporarily unavailable. Please try again.")
