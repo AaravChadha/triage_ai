@@ -232,12 +232,12 @@ STATE 5: SUMMARY GENERATION
   - [x] 1.6.2 Define keyword/phrase list for red flag symptoms
   - 1.6.3 and 1.6.4 moved to 1.5 (wired into /chat endpoint)
 
-- [ ] **1.5 `/chat` Endpoint** ← do sixth, unblocks Teammate 1
+- [x] **1.5 `/chat` Endpoint** ← do sixth, unblocks Teammate 1
   - [x] 1.5.1 Accept message + conversation history
   - [x] 1.5.2 Run emergency detector first — if triggered, return immediately with `is_emergency: true` without calling Groq (1.6.3 + 1.6.4)
   - [x] 1.5.3 Pass to Groq with conversation system prompt
   - [x] 1.5.4 Return AI response + updated history — done in 1.5.3
-  - [ ] 1.5.5 Test with Postman or curl
+  - [x] 1.5.5 Test with Postman or curl
 
 - [ ] **1.7 `/triage` Endpoint** ← do last, unblocks Teammates 1 + 2
   - [ ] 1.7.1 Accept full conversation history
