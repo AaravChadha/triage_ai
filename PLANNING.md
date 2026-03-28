@@ -305,10 +305,10 @@ STATE 5: SUMMARY GENERATION
     - Levels 3–5 (Primary / Telehealth / Self-Care): show recommended tier but also surface lower tiers as alternatives if wait time is significantly shorter
   - [x] 3.1.8 Sort returned facilities by wait time ascending (shortest wait first) — within the allowed tier floor only
 
-- [ ] **3.2 `/facilities` Endpoint**
-  - [ ] 3.2.1 Accept triage level + lat/lng coordinates
-  - [ ] 3.2.2 Call facility service and return results (including wait time field)
-  - [ ] 3.2.3 Hardcoded facility list defined as a static dict in `facility_service.py`, keyed by triage level — mock facilities should be real or realistic locations near Purdue Indianapolis campus (demo will be presented there)
+- [x] **3.2 `/facilities` Endpoint**
+  - [x] 3.2.1 Accept triage level + lat/lng coordinates
+  - [x] 3.2.2 Call facility service and return results (including wait time field)
+  - [x] 3.2.3 Hardcoded facility list defined as a static dict in `facility_service.py`, keyed by triage level — mock facilities should be real or realistic locations near Purdue Indianapolis campus (demo will be presented there)
 
 - [ ] **3.3 Frontend Location + Facility List**
   - [ ] 3.3.1 Request browser geolocation on triage completion
