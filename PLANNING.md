@@ -240,7 +240,7 @@ STATE 5: SUMMARY GENERATION
   - [x] 1.5.5 Test with Postman or curl
 
 - [ ] **1.7 `/triage` Endpoint** ← do last, unblocks Teammates 1 + 2
-  - [ ] 1.7.1 Accept full conversation history
+  - [x] 1.7.1 Accept full conversation history
   - [ ] 1.7.2 Call Groq with triage classification prompt
   - [ ] 1.7.3 Parse and validate returned JSON
   - [ ] 1.7.4 Return structured triage result (severity, confidence, reasoning, key symptoms)

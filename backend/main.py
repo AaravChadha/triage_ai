@@ -1,6 +1,6 @@
 from fastapi import FastAPI
 from fastapi.middleware.cors import CORSMiddleware
-from models.schemas import ChatRequest, ChatResponse, Message
+from models.schemas import ChatRequest, ChatResponse, TriageRequest, TriageResponse, Message
 from services.emergency_detector import check_emergency
 from services.triage_engine import client
 from prompts.conversation import CONVERSATION_SYSTEM_PROMPT
@@ -59,3 +59,8 @@ async def chat(req: ChatRequest):
         history=history,
         is_emergency=False,
     )
+
+
+@app.post("/triage", response_model=TriageResponse)
+async def triage(req: TriageRequest):
+    pass
