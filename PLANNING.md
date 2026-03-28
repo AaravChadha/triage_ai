@@ -292,18 +292,18 @@ STATE 5: SUMMARY GENERATION
 - [x] **3.1 Backend Facility Service**
   - [x] 3.1.1 Create `services/facility_service.py`
   - [x] 3.1.2 ~~Implement Google Places API~~ — using mock data for now (can swap in Google Places API if MLH provides free Google Cloud credits)
-  - [ ] 3.1.3 Map triage level → facility type (e.g., Level 2 → "urgent care")
-  - [ ] 3.1.4 Filter facilities by `required_capabilities` from triage output — a facility must be capable of treating the condition before it is considered (e.g., don't send a patient needing stitches to a telehealth provider)
-  - [ ] 3.1.5 Return top 3 results with name, address, distance, open status — from capable facilities only
-  - [ ] 3.1.6 Attach mock wait time to each facility based on care level tier:
+  - [x] 3.1.3 Map triage level → facility type (e.g., Level 2 → "urgent care")
+  - [x] 3.1.4 Filter facilities by `required_capabilities` from triage output — a facility must be capable of treating the condition before it is considered (e.g., don't send a patient needing stitches to a telehealth provider)
+  - [x] 3.1.5 Return top 3 results with name, address, distance, open status — from capable facilities only
+  - [x] 3.1.6 Attach mock wait time to each facility based on care level tier:
     - Emergency Room: random 45–120 min → display as `~X min wait`
     - Urgent Care: random 15–45 min → display as `~X min wait`
     - Primary Care: no wait time → display as `Next appt: tomorrow`
     - Telehealth: random 0–5 min → display as `Available now` or `~X min wait`
-  - [ ] 3.1.7 Enforce hard care level floor based on severity:
+  - [x] 3.1.7 Enforce hard care level floor based on severity:
     - Levels 1–2 (Emergency / High Urgency): only show Tier 1 (ER) or Tier 2 (Urgent Care) — never route to lower tiers regardless of wait time
     - Levels 3–5 (Primary / Telehealth / Self-Care): show recommended tier but also surface lower tiers as alternatives if wait time is significantly shorter
-  - [ ] 3.1.8 Sort returned facilities by wait time ascending (shortest wait first) — within the allowed tier floor only
+  - [x] 3.1.8 Sort returned facilities by wait time ascending (shortest wait first) — within the allowed tier floor only
 
 - [ ] **3.2 `/facilities` Endpoint**
   - [ ] 3.2.1 Accept triage level + lat/lng coordinates

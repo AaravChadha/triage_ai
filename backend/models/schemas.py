@@ -44,6 +44,7 @@ class FacilitiesRequest(BaseModel):
     triage_level: int
     lat: float
     lng: float
+    required_capabilities: list[str]
 
 class Facility(BaseModel):
     name: str

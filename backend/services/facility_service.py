@@ -69,5 +69,60 @@ MOCK_FACILITIES = [
     }
 ]
 
-def get_nearby_facilities(triage_level: int, lat: float, lng: float, required_capabilities: list[str]) -> list:
-    pass
+def get_nearby_facilities(triage_level: int, lat: float, lng: float, required_capabilities: list[str] = None):
+    if required_capabilities is None:
+        required_capabilities = []
+        
+    eligible = []
+    
+    for f in MOCK_FACILITIES:
+        # 3.1.4 Filter by capabilities (must have all required)
+        missing = [cap for cap in required_capabilities if cap not in f["capabilities"]]
+        if missing:
+            continue
+            
+        # 3.1.7 Enforce care level floor
+        # Levels 1-2 are emergencies/high urgency -> MUST go to Tier 1 or 2
+        if triage_level in (1, 2) and f["tier"] > 2:
+            continue
+            
+        # 3.1.6 Attach mock wait times based on facility tier
+        wait_time_mins = 0
+        if f["tier"] == 1:
+            wait_time_mins = random.randint(45, 120)
+        elif f["tier"] == 2:
+            wait_time_mins = random.randint(15, 45)
+        elif f["tier"] == 3:
+            wait_time_mins = 1440  # Mock "Next appt: tomorrow" as 24 hours
+        elif f["tier"] == 4:
+            wait_time_mins = random.randint(0, 5)
+            
+        # Format the wait time nicely
+        wait_text = f"~{wait_time_mins} min wait"
+        if wait_time_mins >= 1440:
+            wait_text = "Next appt: tomorrow"
+        elif f["tier"] == 4 and wait_time_mins == 0:
+            wait_text = "Available now"
+            
+        # 3.1.3 Facility type is implicitly returned in the response format
+        eligible.append({
+            "name": f["name"],
+            "address": f["address"],
+            "distance_miles": f["distance"], 
+            "is_open": True,  # Mocking as always open for hackathon
+            "wait_time": wait_text,
+            "wait_time_mins": wait_time_mins,
+            "maps_url": f"https://www.google.com/maps/dir/?api=1&destination={f['address'].replace(' ', '+')}"
+        })
+        
+    # 3.1.8 Sort by wait time ascending
+    eligible.sort(key=lambda x: x["wait_time_mins"])
+    
+    # 3.1.5 Return top 3 results
+    top_3 = eligible[:3]
+    
+    for i, fac in enumerate(top_3):
+        fac["is_recommended"] = (i == 0)  # Top result is recommended
+        del fac["wait_time_mins"]  # Remove internal sorting field
+        
+    return top_3
