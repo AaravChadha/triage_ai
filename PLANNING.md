@@ -363,26 +363,6 @@ STATE 5: SUMMARY GENERATION
   - [ ] 5.2.2 Show friendly message if location access is denied
   - [ ] 5.2.3 Prevent double-submitting messages
 
-- [ ] **5.3 Demo Rehearsal**
-  - [ ] 5.3.1 Run through Scenario 1 (emergency) — confirm alert fires correctly
-  - [ ] 5.3.2 Run through Scenario 2 (urgent care) — confirm full flow works end to end
-  - [ ] 5.3.3 Time the demo — target under 3 minutes
-  - [ ] 5.3.4 Prepare a 1-sentence answer for "what happens with patient data?"
-
----
-
-## Demo Script for Judges
-
-**Scenario 1 — Emergency (shows the safety feature):**
-> "It's 2am. Someone wakes up with chest tightness and mild shortness of breath."
-- User types symptoms → AI asks follow-ups → emergency alert fires → red full-screen banner, call 911
-
-**Scenario 2 — Urgent Care (shows the full flow):**
-> "Stomach pain for 2 days, no fever, pain level 5/10."
-- AI asks follow-ups → recommends urgent care → shows 3 nearby facilities → generates patient summary
-
-This arc demonstrates every feature in under 3 minutes.
-
 ---
 
 ## Phase 6 — Submission Checklist `Sunday 3–4pm`
@@ -406,6 +386,31 @@ This arc demonstrates every feature in under 3 minutes.
   - [ ] 6.3.1 Submit GitHub repo link to HackIndy submission portal
   - [ ] 6.3.2 Verify the app runs from a fresh clone (after adding your own `.env` with Groq key)
   - [ ] 6.3.3 Double-check README covers all submission requirements: description, tech stack, what was built, AI disclosure
+
+---
+
+### Phase 7 — Demo Rehearsal `Sunday 4pm`
+> Goal: The happy path is flawless in front of judges. Do this AFTER submission is ready.
+
+- [ ] **7.1 Demo Rehearsal**
+  - [ ] 7.1.1 Run through Scenario 1 (emergency) — confirm alert fires correctly
+  - [ ] 7.1.2 Run through Scenario 2 (urgent care) — confirm full flow works end to end
+  - [ ] 7.1.3 Time the demo — target under 3 minutes
+  - [ ] 7.1.4 Prepare a 1-sentence answer for "what happens with patient data?"
+
+---
+
+## Demo Script for Judges
+
+**Scenario 1 — Emergency (shows the safety feature):**
+> "It's 2am. Someone wakes up with chest tightness and mild shortness of breath."
+- User types symptoms → AI asks follow-ups → emergency alert fires → red full-screen banner, call 911
+
+**Scenario 2 — Urgent Care (shows the full flow):**
+> "Stomach pain for 2 days, no fever, pain level 5/10."
+- AI asks follow-ups → recommends urgent care → shows 3 nearby facilities → generates patient summary
+
+This arc demonstrates every feature in under 3 minutes.
 
 ---
 
