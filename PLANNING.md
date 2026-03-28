@@ -344,7 +344,7 @@ STATE 5: SUMMARY GENERATION
 - [x] **4.3 Mock Hospital Notification**
   - [x] 4.3.1 Create `POST /notify` endpoint
   - [x] 4.3.2 Accept summary payload, log it, return success
-  - [ ] 4.3.3 Show confirmation toast on frontend: "Summary sent to [Facility Name]" — Neil
+  - [x] 4.3.3 Show confirmation on frontend: "Summary sent successfully"
 
 ---
 

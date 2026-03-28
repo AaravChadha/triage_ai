@@ -21,3 +21,19 @@ export interface TriageResponse {
   required_tier: number;
   required_capabilities: string[];
 }
+
+export interface SummaryResponse {
+  chief_complaint: string;
+  symptoms: string[];
+  duration: string;
+  pain_level: number;
+  relevant_history: string;
+  severity: string;
+  recommended_care: string;
+  ai_notes: string;
+}
+
+export interface NotifyResponse {
+  success: boolean;
+  message: string;
+}

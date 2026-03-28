@@ -1,5 +1,5 @@
 import { useState, useCallback } from 'react';
-import { Message, ChatResponse, TriageResponse } from '../types';
+import { Message, ChatResponse, TriageResponse, SummaryResponse } from '../types';
 
 export function useChat() {
   const [messages, setMessages] = useState<Message[]>([]);
@@ -8,6 +8,9 @@ export function useChat() {
   const [emergencyReasoning, setEmergencyReasoning] = useState<string | null>(null);
   const [triageReady, setTriageReady] = useState(false);
   const [triageResult, setTriageResult] = useState<TriageResponse | null>(null);
+  const [summaryResult, setSummaryResult] = useState<SummaryResponse | null>(null);
+  const [isSending, setIsSending] = useState(false);
+  const [sent, setSent] = useState(false);
   const [error, setError] = useState<string | null>(null);
 
   const API_BASE_URL = 'http://localhost:8000'; 
@@ -82,6 +85,21 @@ export function useChat() {
       const data: TriageResponse = await response.json();
       setTriageResult(data);
 
+      // Auto-fetch summary after triage
+      const summaryRes = await fetch(`${API_BASE_URL}/summary`, {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({
+          history: messages,
+          triage_result: data
+        })
+      });
+
+      if (summaryRes.ok) {
+        const summaryData: SummaryResponse = await summaryRes.json();
+        setSummaryResult(summaryData);
+      }
+
     } catch (err: any) {
       setError(err.message || 'An error occurred during triage');
       console.error('Triage error:', err);
@@ -89,6 +107,30 @@ export function useChat() {
       setIsLoading(false);
     }
   }, [messages]);
+
+  const sendToFacility = useCallback(async (facilityName: string) => {
+    if (!summaryResult) return;
+    setIsSending(true);
+
+    try {
+      const response = await fetch(`${API_BASE_URL}/notify`, {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({
+          summary: summaryResult,
+          facility_name: facilityName
+        })
+      });
+
+      if (response.ok) {
+        setSent(true);
+      }
+    } catch (err: any) {
+      setError(err.message || 'Failed to send summary');
+    } finally {
+      setIsSending(false);
+    }
+  }, [summaryResult]);
 
   const dismissEmergency = useCallback(() => {
     setIsEmergency(false);
@@ -101,9 +143,13 @@ export function useChat() {
     emergencyReasoning,
     triageReady,
     triageResult,
+    summaryResult,
+    isSending,
+    sent,
     error,
     sendMessage,
     analyzeSymptoms,
+    sendToFacility,
     dismissEmergency
   };
 }

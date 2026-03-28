@@ -3,6 +3,7 @@ import { useChat } from './hooks/useChat';
 import { ChatWindow } from './components/ChatWindow';
 import { EmergencyAlert } from './components/EmergencyAlert';
 import { TriageResult } from './components/TriageResult';
+import { PatientSummary } from './components/PatientSummary';
 import { Activity } from 'lucide-react';
 
 export default function App() {
@@ -12,9 +13,13 @@ export default function App() {
     isEmergency,
     triageReady,
     triageResult,
+    summaryResult,
+    isSending,
+    sent,
     error,
     sendMessage,
     analyzeSymptoms,
+    sendToFacility,
     dismissEmergency,
     emergencyReasoning
   } = useChat();
@@ -56,11 +61,23 @@ export default function App() {
       ) : (
         <React.Fragment>
           <TriageResult result={triageResult} />
+
+          {summaryResult && (
+            <div className="mt-6 w-full flex justify-center">
+              <PatientSummary
+                summary={summaryResult}
+                onSendToFacility={() => sendToFacility('Nearest Facility')}
+                isSending={isSending}
+                sent={sent}
+              />
+            </div>
+          )}
+
           <button
               onClick={() => window.location.reload()}
               className="mt-8 text-gray-500 font-medium hover:text-gray-900 underline decoration-dotted transition-colors"
           >
-              Start specific session over
+              Start new session
           </button>
         </React.Fragment>
       )}
