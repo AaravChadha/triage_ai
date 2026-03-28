@@ -4,6 +4,7 @@ import { ChatWindow } from './components/ChatWindow';
 import { EmergencyAlert } from './components/EmergencyAlert';
 import { TriageResult } from './components/TriageResult';
 import { PatientSummary } from './components/PatientSummary';
+import { FacilityList } from './components/FacilityList';
 import { Activity } from 'lucide-react';
 
 export default function App() {
@@ -14,6 +15,8 @@ export default function App() {
     triageReady,
     triageResult,
     summaryResult,
+    facilities,
+    isLoadingFacilities,
     isSending,
     sent,
     error,
@@ -70,6 +73,19 @@ export default function App() {
                 isSending={isSending}
                 sent={sent}
               />
+            </div>
+          )}
+
+          {isLoadingFacilities && (
+            <div className="mt-8 text-gray-500 font-medium animate-pulse flex items-center justify-center space-x-2 w-full max-w-2xl bg-white p-6 rounded-3xl border shadow-sm">
+              <span className="w-4 h-4 rounded-full bg-blue-500 inline-block"></span>
+              <span>Finding nearby care...</span>
+            </div>
+          )}
+
+          {facilities && facilities.length > 0 && (
+            <div className="w-full flex justify-center">
+              <FacilityList facilities={facilities} />
             </div>
           )}
 

@@ -37,3 +37,17 @@ export interface NotifyResponse {
   success: boolean;
   message: string;
 }
+
+export interface Facility {
+  name: string;
+  address: string;
+  distance_miles: number;
+  is_open: boolean;
+  wait_time: string;
+  maps_url: string;
+  is_recommended: boolean;
+}
+
+export interface FacilitiesResponse {
+  facilities: Facility[];
+}

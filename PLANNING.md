@@ -310,12 +310,12 @@ STATE 5: SUMMARY GENERATION
   - [x] 3.2.2 Call facility service and return results (including wait time field)
   - [x] 3.2.3 Hardcoded facility list defined as a static dict in `facility_service.py`, keyed by triage level — mock facilities should be real or realistic locations near Purdue Indianapolis campus (demo will be presented there)
 
-- [ ] **3.3 Frontend Location + Facility List**
-  - [ ] 3.3.1 Request browser geolocation on triage completion
-  - [ ] 3.3.2 Call `POST /facilities` with coordinates + severity
-  - [ ] 3.3.3 Build `FacilityList.tsx` — show each facility as a card with name, address, distance, and wait time
-  - [ ] 3.3.4 Highlight the top result as "Recommended" (closest + shortest wait)
-  - [ ] 3.3.5 Link each facility to Google Maps directions
+- [x] **3.3 Frontend Location + Facility List**
+  - [x] 3.3.1 Request browser geolocation on triage completion
+  - [x] 3.3.2 Call `POST /facilities` with coordinates + severity
+  - [x] 3.3.3 Build `FacilityList.tsx` — show each facility as a card with name, address, distance, and wait time
+  - [x] 3.3.4 Highlight the top result as "Recommended" (closest + shortest wait)
+  - [x] 3.3.5 Link each facility to Google Maps directions
 
 ---
 

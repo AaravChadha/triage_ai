@@ -1,5 +1,5 @@
 import { useState, useCallback } from 'react';
-import { Message, ChatResponse, TriageResponse, SummaryResponse } from '../types';
+import { Message, ChatResponse, TriageResponse, SummaryResponse, Facility, FacilitiesResponse } from '../types';
 
 export function useChat() {
   const [messages, setMessages] = useState<Message[]>([]);
@@ -9,6 +9,8 @@ export function useChat() {
   const [triageReady, setTriageReady] = useState(false);
   const [triageResult, setTriageResult] = useState<TriageResponse | null>(null);
   const [summaryResult, setSummaryResult] = useState<SummaryResponse | null>(null);
+  const [facilities, setFacilities] = useState<Facility[] | null>(null);
+  const [isLoadingFacilities, setIsLoadingFacilities] = useState(false);
   const [isSending, setIsSending] = useState(false);
   const [sent, setSent] = useState(false);
   const [error, setError] = useState<string | null>(null);
@@ -85,6 +87,42 @@ export function useChat() {
       const data: TriageResponse = await response.json();
       setTriageResult(data);
 
+      const fetchFacilities = async (lat: number, lng: number) => {
+        setIsLoadingFacilities(true);
+        try {
+          const facRes = await fetch(`${API_BASE_URL}/facilities`, {
+            method: 'POST',
+            headers: { 'Content-Type': 'application/json' },
+            body: JSON.stringify({
+              triage_level: data.required_tier,
+              lat,
+              lng,
+              required_capabilities: data.required_capabilities
+            })
+          });
+          if (facRes.ok) {
+            const facData: FacilitiesResponse = await facRes.json();
+            setFacilities(facData.facilities);
+          }
+        } catch (err) {
+          console.error('Failed to fetch facilities', err);
+        } finally {
+          setIsLoadingFacilities(false);
+        }
+      };
+
+      if (navigator.geolocation) {
+        navigator.geolocation.getCurrentPosition(
+          (pos) => fetchFacilities(pos.coords.latitude, pos.coords.longitude),
+          (err) => {
+            console.error('Geolocation error, using default Purdue Indy coordinates', err);
+            fetchFacilities(39.7739, -86.1661);
+          }
+        );
+      } else {
+        fetchFacilities(39.7739, -86.1661);
+      }
+
       // Auto-fetch summary after triage
       const summaryRes = await fetch(`${API_BASE_URL}/summary`, {
         method: 'POST',
@@ -144,6 +182,8 @@ export function useChat() {
     triageReady,
     triageResult,
     summaryResult,
+    facilities,
+    isLoadingFacilities,
     isSending,
     sent,
     error,
