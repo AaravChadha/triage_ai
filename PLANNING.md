@@ -271,11 +271,10 @@ STATE 5: SUMMARY GENERATION
   - [ ] 2.3.1 Build `EmergencyAlert.tsx` — full-screen red overlay
   - [ ] 2.3.2 Show bold "Call 911 immediately" message with emergency icon
   - [ ] 2.3.3 Trigger when backend returns `is_emergency: true`
-  - [ ] 2.3.4 Add client-side keyword check as a first-pass layer (no API wait)
+  - [ ] 2.3.4 Add client-side keyword check as a first-pass layer (no API wait) — reuse patterns from `services/emergency_detector.py`
 
 - [ ] **2.4 Triage Trigger**
-  - [ ] 2.4.1 Show "Analyze My Symptoms" button when backend signals it has enough info (or after 4 exchanges as a fallback)
-    > **Ask before building:** Should the button appear automatically after a fixed number of exchanges, or should the AI explicitly signal when it has enough info? What happens if the user clicks it early?
+  - [ ] 2.4.1 Show "Analyze My Symptoms" button when backend returns `triage_ready: true` in ChatResponse
   - [ ] 2.4.2 Call `POST /triage` with full conversation history
   - [ ] 2.4.3 Show loading state while waiting
 
@@ -288,11 +287,11 @@ STATE 5: SUMMARY GENERATION
 ---
 
 ### Phase 3 — Facility Finder `Saturday 5pm → Sunday 10am` (~4–5 hrs, includes overnight)
-> Goal: After triage, user sees nearby facilities appropriate for their care level. If Google Places API setup takes too long, use hardcoded mock facilities by zip — it demos identically.
+> Goal: After triage, user sees nearby facilities appropriate for their care level. Using mock facility data near Purdue Indianapolis campus (can swap in Google Places API later if free credits available).
 
 - [ ] **3.1 Backend Facility Service**
   - [ ] 3.1.1 Create `services/facility_service.py`
-  - [ ] 3.1.2 Implement Google Places API call filtered by facility type + location
+  - [ ] 3.1.2 ~~Implement Google Places API~~ — using mock data for now (can swap in Google Places API if MLH provides free Google Cloud credits)
   - [ ] 3.1.3 Map triage level → facility type (e.g., Level 2 → "urgent care")
   - [ ] 3.1.4 Filter facilities by `required_capabilities` from triage output — a facility must be capable of treating the condition before it is considered (e.g., don't send a patient needing stitches to a telehealth provider)
   - [ ] 3.1.5 Return top 3 results with name, address, distance, open status — from capable facilities only
@@ -309,7 +308,7 @@ STATE 5: SUMMARY GENERATION
 - [ ] **3.2 `/facilities` Endpoint**
   - [ ] 3.2.1 Accept triage level + lat/lng coordinates
   - [ ] 3.2.2 Call facility service and return results (including wait time field)
-  - [ ] 3.2.3 Add mock fallback: hardcoded facility list defined as a static dict in `facility_service.py`, keyed by triage level, used if Places API is unavailable or returns no results — mock facilities should be real or realistic locations near Purdue Indianapolis campus (demo will be presented there)
+  - [ ] 3.2.3 Hardcoded facility list defined as a static dict in `facility_service.py`, keyed by triage level — mock facilities should be real or realistic locations near Purdue Indianapolis campus (demo will be presented there)
 
 - [ ] **3.3 Frontend Location + Facility List**
   - [ ] 3.3.1 Request browser geolocation on triage completion
