@@ -236,7 +236,7 @@ STATE 5: SUMMARY GENERATION
   - [x] 1.5.1 Accept message + conversation history
   - [x] 1.5.2 Run emergency detector first — if triggered, return immediately with `is_emergency: true` without calling Groq (1.6.3 + 1.6.4)
   - [x] 1.5.3 Pass to Groq with conversation system prompt
-  - [ ] 1.5.4 Return AI response + updated history
+  - [x] 1.5.4 Return AI response + updated history — done in 1.5.3
   - [ ] 1.5.5 Test with Postman or curl
 
 - [ ] **1.7 `/triage` Endpoint** ← do last, unblocks Teammates 1 + 2
