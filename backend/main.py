@@ -2,6 +2,8 @@ from fastapi import FastAPI
 from fastapi.middleware.cors import CORSMiddleware
 from models.schemas import ChatRequest, ChatResponse, Message
 from services.emergency_detector import check_emergency
+from services.triage_engine import client
+from prompts.conversation import CONVERSATION_SYSTEM_PROMPT
 
 app = FastAPI(title="Triage AI")
 
@@ -29,3 +31,20 @@ async def chat(req: ChatRequest):
             history=history,
             is_emergency=True,
         )
+
+    messages = [{"role": "system", "content": CONVERSATION_SYSTEM_PROMPT}]
+    messages += [{"role": m.role, "content": m.content} for m in history]
+
+    response = client.chat.completions.create(
+        model="llama-3.3-70b-versatile",
+        messages=messages,
+    )
+
+    ai_message = response.choices[0].message.content
+    history.append(Message(role="assistant", content=ai_message))
+
+    return ChatResponse(
+        response=ai_message,
+        history=history,
+        is_emergency=False,
+    )
