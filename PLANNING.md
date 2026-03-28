@@ -223,10 +223,9 @@ STATE 5: SUMMARY GENERATION
   - [x] 1.2.2 Create `prompts/triage.py` — system prompt for severity classification (Tier 0 shows 911 + nearest ER, returns JSON with tier, capabilities, confidence)
   - [x] 1.2.3 Create `prompts/summary.py` — system prompt for pre-arrival clinical summary sent to facility, structured JSON, preliminary AI assessment language
 
-- [ ] **1.4 Triage → Tier Mapping** ← do fourth
+- [x] **1.4 Triage → Tier Mapping** ← do fourth
   - [x] 1.4.1 AI triage output must include `required_tier` and `required_capabilities` (e.g., `["imaging", "IV fluids"]`) — built into triage prompt (1.2.2) and schema (1.3.1)
-  - [ ] 1.4.2 These fields are passed directly to the facility service to filter eligible facilities — **deferred to Phase 3 (Teammate 2 builds facility service, Aarav integrates)**
-  - [ ] 1.4.3 Validate that the AI never recommends a tier incapable of treating the identified condition — **deferred to Phase 3 (add backend validation after facility service exists)**
+  - 1.4.2 and 1.4.3 moved to Phase 3.5 (needs facility service first)
 
 - [ ] **1.6 Emergency Detector** ← do fifth (needed before /chat)
   - [ ] 1.6.1 Create `services/emergency_detector.py`
@@ -313,6 +312,15 @@ STATE 5: SUMMARY GENERATION
   - [ ] 3.3.3 Build `FacilityList.tsx` — show each facility as a card with name, address, distance, and wait time
   - [ ] 3.3.4 Highlight the top result as "Recommended" (closest + shortest wait)
   - [ ] 3.3.5 Link each facility to Google Maps directions
+
+---
+
+### Phase 3.5 — Triage ↔ Facility Integration (Aarav) `after Phase 3`
+> Goal: Wire up the triage output to the facility service so filtering and validation actually work end-to-end.
+
+- [ ] **1.4 Triage → Tier Mapping (deferred from Phase 1)**
+  - [ ] 1.4.2 Pass `required_tier` and `required_capabilities` from triage output to facility service filter
+  - [ ] 1.4.3 Add backend validation that the AI never recommends a tier incapable of treating the identified condition (e.g., a laceration needing stitches cannot be sent to Tier 4 Telehealth)
 
 ---
 
