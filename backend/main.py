@@ -41,6 +41,17 @@ async def chat(req: ChatRequest):
     )
 
     ai_message = response.choices[0].message.content
+
+    # AI detected emergency from context (prompt tells it to say EMERGENCY_DETECTED)
+    if "EMERGENCY_DETECTED" in ai_message:
+        emergency_msg = "EMERGENCY DETECTED — Call 911 immediately. If you cannot transport yourself, stay where you are and wait for paramedics."
+        history.append(Message(role="assistant", content=emergency_msg))
+        return ChatResponse(
+            response=emergency_msg,
+            history=history,
+            is_emergency=True,
+        )
+
     history.append(Message(role="assistant", content=ai_message))
 
     return ChatResponse(
