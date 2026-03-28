@@ -8,6 +8,7 @@ export interface ChatResponse {
   history: Message[];
   is_emergency: boolean;
   triage_ready: boolean;
+  emergency_reasoning?: string | null;
 }
 
 export interface TriageResponse {

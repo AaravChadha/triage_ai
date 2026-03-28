@@ -15,12 +15,13 @@ export default function App() {
     error,
     sendMessage,
     analyzeSymptoms,
-    dismissEmergency
+    dismissEmergency,
+    emergencyReasoning
   } = useChat();
 
   return (
     <div className="min-h-screen bg-gray-100 flex flex-col items-center py-12 px-4 selection:bg-blue-100 selection:text-blue-900 font-sans">
-      {isEmergency && <EmergencyAlert onDismiss={dismissEmergency} />}
+      {isEmergency && <EmergencyAlert onDismiss={dismissEmergency} reasoning={emergencyReasoning} />}
 
       <div className="mb-8 flex items-center">
          <div className="bg-blue-600 p-3 rounded-2xl shadow-lg mr-4">

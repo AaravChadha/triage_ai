@@ -5,6 +5,7 @@ export function useChat() {
   const [messages, setMessages] = useState<Message[]>([]);
   const [isLoading, setIsLoading] = useState(false);
   const [isEmergency, setIsEmergency] = useState(false);
+  const [emergencyReasoning, setEmergencyReasoning] = useState<string | null>(null);
   const [triageReady, setTriageReady] = useState(false);
   const [triageResult, setTriageResult] = useState<TriageResponse | null>(null);
   const [error, setError] = useState<string | null>(null);
@@ -47,6 +48,7 @@ export function useChat() {
       
       if (data.is_emergency) {
          setIsEmergency(true);
+         setEmergencyReasoning(data.emergency_reasoning || null);
       }
       
       setMessages(data.history);
@@ -96,6 +98,7 @@ export function useChat() {
     messages,
     isLoading,
     isEmergency,
+    emergencyReasoning,
     triageReady,
     triageResult,
     error,
