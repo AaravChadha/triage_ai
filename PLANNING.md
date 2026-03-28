@@ -245,6 +245,12 @@ STATE 5: SUMMARY GENERATION
   - [ ] 1.7.3 Parse and validate returned JSON
   - [ ] 1.7.4 Return structured triage result (severity, confidence, reasoning, key symptoms)
 
+- [ ] **1.8 Phase 1 Integration Test**
+  - [ ] 1.8.1 Test `/chat` end-to-end: normal message → AI follow-up → emergency message → `is_emergency: true`
+  - [ ] 1.8.2 Test `/triage` end-to-end: send full conversation → get valid JSON with correct tier and capabilities
+  - [ ] 1.8.3 Verify emergency detector doesn't false-positive on mild symptoms (e.g. "slight cough", "runny nose")
+  - [ ] 1.8.4 Verify TRIAGE_READY signal fires after enough questions
+
 ---
 
 ### Phase 2 — Frontend Chat Interface `Saturday 12pm → 5pm` (~2–3 hrs)
