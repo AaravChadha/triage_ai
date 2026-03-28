@@ -1,4 +1,4 @@
-import React from 'react';
+
 import { FileText, AlertCircle } from 'lucide-react';
 
 interface SummaryData {
@@ -17,9 +17,10 @@ interface PatientSummaryProps {
   onSendToFacility: () => void;
   isSending: boolean;
   sent: boolean;
+  selectedFacilityName: string | null;
 }
 
-export function PatientSummary({ summary, onSendToFacility, isSending, sent }: PatientSummaryProps) {
+export function PatientSummary({ summary, onSendToFacility, isSending, sent, selectedFacilityName }: PatientSummaryProps) {
   return (
     <div className="w-full max-w-2xl bg-white rounded-2xl shadow-lg border border-gray-200 overflow-hidden">
       <div className="bg-gray-900 text-white px-6 py-4 flex items-center">
@@ -88,7 +89,7 @@ export function PatientSummary({ summary, onSendToFacility, isSending, sent }: P
             disabled={isSending}
             className="w-full bg-blue-600 text-white font-bold py-3 rounded-xl shadow-lg shadow-blue-500/20 hover:bg-blue-700 active:scale-[0.98] transition-all disabled:opacity-50"
           >
-            {isSending ? 'Sending...' : 'Send to Facility'}
+            {isSending ? 'Sending...' : selectedFacilityName ? `Send to ${selectedFacilityName}` : 'Send to Facility'}
           </button>
         ) : (
           <div className="w-full bg-green-50 text-green-700 font-semibold py-3 rounded-xl text-center border border-green-200">

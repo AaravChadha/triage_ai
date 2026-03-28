@@ -2,7 +2,11 @@
 import { Facility } from '../types';
 import { MapPin, Clock, Navigation, CheckCircle2 } from 'lucide-react';
 
-export function FacilityList({ facilities }: { facilities: Facility[] }) {
+export function FacilityList({ facilities, selectedFacilityName, onSelectFacility }: { 
+  facilities: Facility[], 
+  selectedFacilityName: string | null, 
+  onSelectFacility: (name: string) => void 
+}) {
   if (!facilities.length) return null;
 
   return (
@@ -12,7 +16,8 @@ export function FacilityList({ facilities }: { facilities: Facility[] }) {
         {facilities.map((fac, idx) => (
           <div 
             key={idx} 
-            className={`relative p-6 rounded-3xl border shadow-sm transition-all hover:shadow-md bg-white ${fac.is_recommended ? 'border-teal-400 ring-2 ring-teal-400' : 'border-gray-200'}`}
+            onClick={() => onSelectFacility(fac.name)}
+            className={`cursor-pointer relative p-6 rounded-3xl border shadow-sm transition-all hover:shadow-md ${selectedFacilityName === fac.name ? 'border-blue-500 ring-2 ring-blue-500 bg-blue-50/20' : fac.is_recommended ? 'border-teal-400 ring-2 ring-teal-400 bg-white' : 'border-gray-200 bg-white'}`}
           >
             {fac.is_recommended && (
               <div className="absolute -top-3 left-6 px-3 py-1 bg-teal-500 text-white text-xs font-bold uppercase tracking-wider rounded-full shadow-sm flex items-center">
@@ -38,11 +43,19 @@ export function FacilityList({ facilities }: { facilities: Facility[] }) {
               </div>
             </div>
             
-            <div className="mt-5 pt-4 border-t border-gray-100 flex justify-end">
+            <div className="mt-5 pt-4 border-t border-gray-100 flex justify-between items-center">
+              <div>
+                {selectedFacilityName === fac.name ? (
+                  <span className="text-blue-600 font-bold text-sm bg-blue-100 px-3 py-1 rounded-full">Selected</span>
+                ) : (
+                  <span className="text-gray-400 font-semibold text-sm hover:text-blue-500 transition-colors">Click to select</span>
+                )}
+              </div>
               <a 
                 href={fac.maps_url} 
                 target="_blank" 
                 rel="noopener noreferrer"
+                onClick={(e) => e.stopPropagation()} 
                 className="inline-flex items-center px-4 py-2 bg-blue-50 text-blue-700 font-semibold rounded-xl text-sm hover:bg-blue-100 transition-colors"
                >
                  <Navigation size={14} className="mr-2" />

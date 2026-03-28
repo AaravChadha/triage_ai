@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useState, useEffect } from 'react';
 import { useChat } from './hooks/useChat';
 import { ChatWindow } from './components/ChatWindow';
 import { EmergencyAlert } from './components/EmergencyAlert';
@@ -26,6 +26,14 @@ export default function App() {
     dismissEmergency,
     emergencyReasoning
   } = useChat();
+
+  const [selectedFacilityName, setSelectedFacilityName] = useState<string | null>(null);
+
+  useEffect(() => {
+    if (facilities && facilities.length > 0 && !selectedFacilityName) {
+      setSelectedFacilityName(facilities[0].name);
+    }
+  }, [facilities, selectedFacilityName]);
 
   return (
     <div className="min-h-screen bg-gray-100 flex flex-col items-center py-12 px-4 selection:bg-blue-100 selection:text-blue-900 font-sans">
@@ -69,9 +77,10 @@ export default function App() {
             <div className="mt-6 w-full flex justify-center">
               <PatientSummary
                 summary={summaryResult}
-                onSendToFacility={() => sendToFacility('Nearest Facility')}
+                onSendToFacility={() => sendToFacility(selectedFacilityName || 'Nearest Facility')}
                 isSending={isSending}
                 sent={sent}
+                selectedFacilityName={selectedFacilityName}
               />
             </div>
           )}
@@ -84,8 +93,12 @@ export default function App() {
           )}
 
           {facilities && facilities.length > 0 && (
-            <div className="w-full flex justify-center">
-              <FacilityList facilities={facilities} />
+            <div className="w-full flex justify-center mb-8">
+              <FacilityList 
+                facilities={facilities} 
+                selectedFacilityName={selectedFacilityName}
+                onSelectFacility={setSelectedFacilityName}
+              />
             </div>
           )}
 
