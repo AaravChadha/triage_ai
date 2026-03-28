@@ -1,7 +1,7 @@
 import React from 'react';
 import { PhoneCall, AlertTriangle } from 'lucide-react';
 
-export function EmergencyAlert() {
+export function EmergencyAlert({ onDismiss }: { onDismiss: () => void }) {
   return (
     <div className="fixed inset-0 z-50 flex items-center justify-center bg-red-600/95 backdrop-blur-sm p-4">
        <div className="bg-white max-w-md w-full rounded-3xl p-8 flex flex-col items-center text-center shadow-2xl animate-in fade-in zoom-in duration-300">
@@ -27,9 +27,9 @@ export function EmergencyAlert() {
 
           <button 
             className="mt-6 text-gray-400 font-medium text-sm hover:text-gray-600 transition-colors underline decoration-dotted underline-offset-4"
-            onClick={() => window.location.reload()}
+            onClick={onDismiss}
           >
-            I made a mistake, reset chat
+            This is not an emergency — continue chat
           </button>
        </div>
     </div>

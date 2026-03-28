@@ -88,6 +88,10 @@ export function useChat() {
     }
   }, [messages]);
 
+  const dismissEmergency = useCallback(() => {
+    setIsEmergency(false);
+  }, []);
+
   return {
     messages,
     isLoading,
@@ -96,6 +100,7 @@ export function useChat() {
     triageResult,
     error,
     sendMessage,
-    analyzeSymptoms
+    analyzeSymptoms,
+    dismissEmergency
   };
 }

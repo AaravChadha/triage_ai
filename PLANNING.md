@@ -256,33 +256,33 @@ STATE 5: SUMMARY GENERATION
 ### Phase 2 — Frontend Chat Interface `Saturday 12pm → 5pm` (~2–3 hrs)
 > Goal: User can have a full conversation in the browser and see a triage result.
 
-- [ ] **2.1 Chat UI Layout**
-  - [ ] 2.1.1 Build `ChatWindow.tsx` — scrollable message area + input bar
-  - [ ] 2.1.2 Build `MessageBubble.tsx` — distinct styles for user vs AI messages
-  - [ ] 2.1.3 Wire input to send message on Enter or button click
+- [x] **2.1 Chat UI Layout**
+  - [x] 2.1.1 Build `ChatWindow.tsx` — scrollable message area + input bar
+  - [x] 2.1.2 Build `MessageBubble.tsx` — distinct styles for user vs AI messages
+  - [x] 2.1.3 Wire input to send message on Enter or button click
 
-- [ ] **2.2 Connect to Backend**
-  - [ ] 2.2.1 Create `hooks/useChat.ts` — manages message state and API calls
-  - [ ] 2.2.2 Call `POST /chat` on each user message
-  - [ ] 2.2.3 Append AI response to message list
-  - [ ] 2.2.4 Handle loading state (show typing indicator)
+- [x] **2.2 Connect to Backend**
+  - [x] 2.2.1 Create `hooks/useChat.ts` — manages message state and API calls
+  - [x] 2.2.2 Call `POST /chat` on each user message
+  - [x] 2.2.3 Append AI response to message list
+  - [x] 2.2.4 Handle loading state (show typing indicator)
 
-- [ ] **2.3 Emergency Alert**
-  - [ ] 2.3.1 Build `EmergencyAlert.tsx` — full-screen red overlay
-  - [ ] 2.3.2 Show bold "Call 911 immediately" message with emergency icon + "Continue" button if the user believes it's not an emergency
-  - [ ] 2.3.3 Trigger when backend returns `is_emergency: true`
-  - [ ] 2.3.4 Add client-side keyword check as a first-pass layer (no API wait) — reuse patterns from `services/emergency_detector.py`
+- [x] **2.3 Emergency Alert**
+  - [x] 2.3.1 Build `EmergencyAlert.tsx` — full-screen red overlay
+  - [x] 2.3.2 Show bold "Call 911 immediately" message with emergency icon + "Continue" button if the user believes it's not an emergency
+  - [x] 2.3.3 Trigger when backend returns `is_emergency: true`
+  - [x] 2.3.4 Add client-side keyword check as a first-pass layer (no API wait) — reuse patterns from `services/emergency_detector.py`
 
-- [ ] **2.4 Triage Trigger**
-  - [ ] 2.4.1 Show "Analyze My Symptoms" button when backend returns `triage_ready: true` in ChatResponse
-  - [ ] 2.4.2 Call `POST /triage` with full conversation history
-  - [ ] 2.4.3 Show loading state while waiting
+- [x] **2.4 Triage Trigger**
+  - [x] 2.4.1 Show "Analyze My Symptoms" button when backend returns `triage_ready: true` in ChatResponse
+  - [x] 2.4.2 Call `POST /triage` with full conversation history
+  - [x] 2.4.3 Show loading state while waiting
 
-- [ ] **2.5 Triage Result Card**
-  - [ ] 2.5.1 Build `TriageResult.tsx`
-  - [ ] 2.5.2 Display severity level with color coding (red = ER, orange = urgent, green = self-care)
-  - [ ] 2.5.3 Show reasoning and key symptoms
-  - [ ] 2.5.4 Show confidence level
+- [x] **2.5 Triage Result Card**
+  - [x] 2.5.1 Build `TriageResult.tsx`
+  - [x] 2.5.2 Display severity level with color coding (red = ER, orange = urgent, green = self-care)
+  - [x] 2.5.3 Show reasoning and key symptoms
+  - [x] 2.5.4 Show confidence level
 
 ---
 

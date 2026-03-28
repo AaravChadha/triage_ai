@@ -14,12 +14,13 @@ export default function App() {
     triageResult,
     error,
     sendMessage,
-    analyzeSymptoms
+    analyzeSymptoms,
+    dismissEmergency
   } = useChat();
 
   return (
     <div className="min-h-screen bg-gray-100 flex flex-col items-center py-12 px-4 selection:bg-blue-100 selection:text-blue-900 font-sans">
-      {isEmergency && <EmergencyAlert />}
+      {isEmergency && <EmergencyAlert onDismiss={dismissEmergency} />}
 
       <div className="mb-8 flex items-center">
          <div className="bg-blue-600 p-3 rounded-2xl shadow-lg mr-4">
