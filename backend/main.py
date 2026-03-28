@@ -23,16 +23,36 @@ def health():
     return {"status": "ok"}
 
 
+def get_emergency_reasoning(history: list[Message]) -> str:
+    """Ask Groq to explain why these symptoms are flagged as an emergency."""
+    try:
+        response = client.chat.completions.create(
+            model=MODEL,
+            messages=[
+                {"role": "system", "content": "You are a clinical triage assistant. The patient's symptoms have been flagged as a potential emergency. Explain in 2-3 sentences why these symptoms are concerning and why calling 911 is recommended. Be specific about what the symptoms could indicate. Do not diagnose — use 'could indicate' or 'consistent with' language."},
+                *[{"role": m.role, "content": m.content} for m in history],
+            ],
+        )
+        return response.choices[0].message.content or ""
+    except Exception:
+        return "Your symptoms match patterns associated with serious medical conditions that require immediate evaluation."
+
+
+EMERGENCY_MSG = "EMERGENCY DETECTED — Call 911 immediately. If you cannot transport yourself, stay where you are and wait for paramedics. If you believe this is not an emergency, you can continue describing your symptoms."
+
+
 @app.post("/chat", response_model=ChatResponse)
 async def chat(req: ChatRequest):
     history = req.history + [Message(role="user", content=req.message)]
 
     if check_emergency(req.message):
-        history.append(Message(role="assistant", content="EMERGENCY DETECTED — Call 911 immediately. If you cannot transport yourself, stay where you are and wait for paramedics. If you believe this is not an emergency, you can continue describing your symptoms."))
+        reasoning = get_emergency_reasoning(history)
+        history.append(Message(role="assistant", content=EMERGENCY_MSG))
         return ChatResponse(
-            response=history[-1].content,
+            response=EMERGENCY_MSG,
             history=history,
             is_emergency=True,
+            emergency_reasoning=reasoning,
         )
 
     messages = [{"role": "system", "content": CONVERSATION_SYSTEM_PROMPT}]
@@ -49,12 +69,13 @@ async def chat(req: ChatRequest):
 
     # AI detected emergency from context (prompt tells it to say EMERGENCY_DETECTED)
     if "EMERGENCY_DETECTED" in ai_message:
-        emergency_msg = "EMERGENCY DETECTED — Call 911 immediately. If you cannot transport yourself, stay where you are and wait for paramedics. If you believe this is not an emergency, you can continue describing your symptoms."
-        history.append(Message(role="assistant", content=emergency_msg))
+        reasoning = get_emergency_reasoning(history)
+        history.append(Message(role="assistant", content=EMERGENCY_MSG))
         return ChatResponse(
-            response=emergency_msg,
+            response=EMERGENCY_MSG,
             history=history,
             is_emergency=True,
+            emergency_reasoning=reasoning,
         )
 
     # AI has enough info to triage
