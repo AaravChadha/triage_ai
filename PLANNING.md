@@ -326,6 +326,11 @@ STATE 5: SUMMARY GENERATION
   - [ ] 1.4.2 Pass `required_tier` and `required_capabilities` from triage output to facility service filter
   - [ ] 1.4.3 Add backend validation that the AI never recommends a tier incapable of treating the identified condition (e.g., a laceration needing stitches cannot be sent to Tier 4 Telehealth)
 
+- [ ] **3.6 Facility → Summary Integration**
+  - [ ] 3.6.1 After triage, show facility list — patient selects a facility (or uses recommended)
+  - [ ] 3.6.2 Selected facility name is passed to PatientSummary's "Send to Facility" button
+  - [ ] 3.6.3 On send, call `POST /notify` with actual selected facility name instead of placeholder
+
 ---
 
 ### Phase 4 — Patient Summary `Sunday 10am → 1pm` (~1–2 hrs)
