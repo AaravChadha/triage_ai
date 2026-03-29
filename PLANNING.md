@@ -13,7 +13,7 @@ Hospitals, especially emergency departments, are overwhelmed because patients ar
 
 An AI-powered pre-arrival triage system that:
 1. Collects symptom information via a conversational interface
-2. Analyzes symptoms using Claude AI
+2. Analyzes symptoms using Groq AI (llama-3.3-70b-versatile)
 3. Classifies severity and recommends appropriate care level
 4. Identifies nearby medical facilities
 5. Generates a structured patient summary for the receiving facility
@@ -27,7 +27,7 @@ An AI-powered pre-arrival triage system that:
 | Frontend | React + Vite + Tailwind CSS | Fast setup, chat UI fits well |
 | Backend | Python + FastAPI | Best AI library ecosystem, async support |
 | AI | Groq API (`llama-3.3-70b-versatile`) | Free, no credit card, fast inference, OpenAI-compatible |
-| Maps/Facilities | Google Places API | Best facility data + distance calculation |
+| Maps/Facilities | Mock data (near Purdue Indy) | Hardcoded facilities, can swap in Google Places API if free credits available |
 | DB | None (in-memory sessions) | Saves setup time for hackathon |
 | Deployment | Vercel (frontend) + Railway (backend) | Zero-config hackathon deploys |
 
@@ -45,7 +45,7 @@ React Chat UI
 FastAPI Backend
       ├── /chat          → Groq API (conversation + follow-ups)
       ├── /triage        → Groq API (severity classification)
-      ├── /facilities    → Google Places API (nearby care)
+      ├── /facilities    → Mock facility data (nearby care)
       ├── /summary       → Groq API (structured patient summary)
       └── /notify        → Mock hospital endpoint
 ```
