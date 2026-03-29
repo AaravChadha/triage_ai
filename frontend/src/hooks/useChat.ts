@@ -17,18 +17,11 @@ export function useChat() {
 
   const API_BASE_URL = 'http://localhost:8000'; 
 
-  const checkEmergencyKeywords = (text: string) => {
-    const list = ['chest pain', 'hurt to breathe', 'can\'t breathe', 'stroke', 'bleeding out', 'gunshot', 'suicide'];
-    const lower = text.toLowerCase();
-    return list.some(keyword => lower.includes(keyword));
-  };
 
   const sendMessage = useCallback(async (content: string) => {
     const userMessage: Message = { role: 'user', content };
     setMessages((prev: Message[]) => [...prev, userMessage]);
     setError(null);
-
-    const isKeywordEmergency = checkEmergencyKeywords(content);
 
     setIsLoading(true);
 
@@ -49,7 +42,7 @@ export function useChat() {
 
       const data: ChatResponse = await response.json();
       
-      if (data.is_emergency || isKeywordEmergency) {
+      if (data.is_emergency) {
          setIsEmergency(true);
          setEmergencyReasoning(data.emergency_reasoning || null);
       }
