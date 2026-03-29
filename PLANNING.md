@@ -322,9 +322,9 @@ STATE 5: SUMMARY GENERATION
 ### Phase 3.5 — Triage ↔ Facility Integration (Aarav) `after Phase 3`
 > Goal: Wire up the triage output to the facility service so filtering and validation actually work end-to-end.
 
-- [ ] **1.4 Triage → Tier Mapping (deferred from Phase 1)**
-  - [ ] 1.4.2 Pass `required_tier` and `required_capabilities` from triage output to facility service filter
-  - [ ] 1.4.3 Add backend validation that the AI never recommends a tier incapable of treating the identified condition (e.g., a laceration needing stitches cannot be sent to Tier 4 Telehealth)
+- [x] **1.4 Triage → Tier Mapping (deferred from Phase 1)**
+  - [x] 1.4.2 Pass `required_tier` and `required_capabilities` from triage output to facility service filter — done by Neil in Phase 3
+  - [x] 1.4.3 Add backend validation that the AI never recommends a tier incapable of treating the identified condition — auto-escalates tier if capabilities require it
 
 - [x] **3.6 Facility → Summary Integration**
   - [x] 3.6.1 After triage, show facility list — patient selects a facility (or uses recommended)

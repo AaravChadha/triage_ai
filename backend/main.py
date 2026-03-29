@@ -8,6 +8,7 @@ from prompts.conversation import CONVERSATION_SYSTEM_PROMPT
 from prompts.triage import TRIAGE_SYSTEM_PROMPT
 from prompts.summary import SUMMARY_SYSTEM_PROMPT
 from services.facility_service import get_nearby_facilities
+from models.triage_levels import TIER_CAPABILITIES
 
 app = FastAPI(title="Triage AI")
 
@@ -131,7 +132,27 @@ async def triage(req: TriageRequest):
 
         try:
             data = json.loads(cleaned)
-            return TriageResponse(**data)
+            result = TriageResponse(**data)
+
+            # 1.4.3 — Validate tier matches capabilities
+            # Find the minimum tier that can handle all required capabilities
+            if result.required_capabilities:
+                min_tier = None
+                for tier in sorted(TIER_CAPABILITIES.keys()):
+                    tier_caps = set(TIER_CAPABILITIES.get(tier, []))
+                    # Also include all capabilities from higher tiers
+                    for higher_tier in TIER_CAPABILITIES:
+                        if higher_tier <= tier:
+                            tier_caps.update(TIER_CAPABILITIES[higher_tier])
+                    if all(cap in tier_caps for cap in result.required_capabilities):
+                        min_tier = tier
+                        break
+
+                # If AI recommended a tier too low for the capabilities, escalate
+                if min_tier is not None and result.required_tier > min_tier:
+                    result.required_tier = min_tier
+
+            return result
         except (json.JSONDecodeError, Exception):
             continue
 
