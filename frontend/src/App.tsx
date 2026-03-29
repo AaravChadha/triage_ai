@@ -28,6 +28,7 @@ export default function App() {
   } = useChat();
 
   const [selectedFacilityName, setSelectedFacilityName] = useState<string | null>(null);
+  const [patientName, setPatientName] = useState('');
 
   useEffect(() => {
     if (facilities && facilities.length > 0 && !selectedFacilityName) {
@@ -51,7 +52,18 @@ export default function App() {
 
       {!triageResult ? (
         <>
-          <ChatWindow 
+          {messages.length === 0 && (
+            <div className="w-full max-w-2xl mb-4">
+              <input
+                type="text"
+                placeholder="Patient name (optional)"
+                value={patientName}
+                onChange={(e) => setPatientName(e.target.value)}
+                className="w-full bg-white border border-gray-200 rounded-xl px-4 py-3 text-gray-800 focus:outline-none focus:ring-2 focus:ring-blue-500/20 focus:border-blue-500 transition-all font-medium placeholder:text-gray-400 placeholder:font-normal"
+              />
+            </div>
+          )}
+          <ChatWindow
             messages={messages}
             isLoading={isLoading}
             onSendMessage={sendMessage}
@@ -81,6 +93,7 @@ export default function App() {
                 isSending={isSending}
                 sent={sent}
                 selectedFacilityName={selectedFacilityName}
+                patientName={patientName}
               />
             </div>
           )}

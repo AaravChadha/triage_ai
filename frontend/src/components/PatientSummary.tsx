@@ -18,9 +18,10 @@ interface PatientSummaryProps {
   isSending: boolean;
   sent: boolean;
   selectedFacilityName: string | null;
+  patientName?: string;
 }
 
-export function PatientSummary({ summary, onSendToFacility, isSending, sent, selectedFacilityName }: PatientSummaryProps) {
+export function PatientSummary({ summary, onSendToFacility, isSending, sent, selectedFacilityName, patientName }: PatientSummaryProps) {
   return (
     <div className="w-full max-w-2xl bg-white rounded-2xl shadow-lg border border-gray-200 overflow-hidden">
       <div className="bg-gray-900 text-white px-6 py-4 flex items-center">
@@ -29,6 +30,12 @@ export function PatientSummary({ summary, onSendToFacility, isSending, sent, sel
       </div>
 
       <div className="p-6 space-y-4">
+        {patientName && (
+          <div>
+            <h3 className="text-xs font-semibold text-gray-400 uppercase tracking-wider">Patient</h3>
+            <p className="text-gray-900 font-medium mt-1">{patientName}</p>
+          </div>
+        )}
         <div>
           <h3 className="text-xs font-semibold text-gray-400 uppercase tracking-wider">Chief Complaint</h3>
           <p className="text-gray-900 font-medium mt-1">{summary.chief_complaint}</p>
