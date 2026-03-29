@@ -20,8 +20,8 @@ A patient describes their symptoms through a chat interface. The AI asks targete
 
 ## Team
 
-- **Aarav Chadha** — Team Lead, backend, AI prompt engineering, triage logic, UI polish
-- **Neil** — Frontend, facility service, UI components
+- **Team Lead** — Aarav Chadha | Backend, AI prompt engineering, triage logic, UI polish
+- **Frontend Lead** — Neil | Frontend, facility service, UI components
 
 ## Tech Stack
 
