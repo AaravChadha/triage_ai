@@ -46,7 +46,8 @@ export function useChat() {
       });
 
       if (!response.ok) {
-        throw new Error('Failed to send message');
+        const errData = await response.json().catch(() => null);
+        throw new Error(errData?.detail || 'Failed to send message. If you are experiencing a medical emergency, call 911 immediately.');
       }
 
       const data: ChatResponse = await response.json();
@@ -81,7 +82,8 @@ export function useChat() {
       });
 
       if (!response.ok) {
-        throw new Error('Failed to analyze symptoms');
+        const errData = await response.json().catch(() => null);
+        throw new Error(errData?.detail || 'Failed to analyze symptoms. Please try again.');
       }
 
       const data: TriageResponse = await response.json();

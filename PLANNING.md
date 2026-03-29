@@ -363,7 +363,7 @@ STATE 5: SUMMARY GENERATION
   - [x] 5.1.4 Smooth transitions between chat, triage result, and facility list (done by Neil)
 
 - [ ] **5.2 Error Handling**
-  - [ ] 5.2.1 Show friendly message if Groq API call fails — backend already returns 503 with emergency instructions, frontend needs to display it
+  - [x] 5.2.1 Show friendly message if Groq API call fails — frontend now shows backend error detail with emergency instructions
   - [ ] 5.2.2 Show friendly message if location access is denied
   - [ ] 5.2.3 Prevent double-submitting messages
 
