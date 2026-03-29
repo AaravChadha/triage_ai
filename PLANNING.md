@@ -395,12 +395,12 @@ STATE 5: SUMMARY GENERATION
 ### Phase 6.5 — Devpost Submission `Sunday 3–4pm`
 > Goal: Submit to Devpost before deadline. Use README content as base.
 
-- [ ] **6.5.1** Create project on Devpost
-- [ ] **6.5.2** Write project overview (reuse README "What it does" + key features)
-- [ ] **6.5.3** Add tech stack and what was built during the event
-- [ ] **6.5.4** Add AI usage disclosure
-- [ ] **6.5.5** Link GitHub repo
-- [ ] **6.5.6** Add screenshots/demo video if time allows
+- [x] **6.5.1** Create project on Devpost
+- [x] **6.5.2** Write project overview (reuse README "What it does" + key features)
+- [x] **6.5.3** Add tech stack and what was built during the event
+- [x] **6.5.4** Add AI usage disclosure
+- [x] **6.5.5** Link GitHub repo
+- [x] **6.5.6** Add screenshots + demo video
 
 ---
 
