@@ -116,8 +116,8 @@ export function useChat() {
       if (navigator.geolocation) {
         navigator.geolocation.getCurrentPosition(
           (pos) => fetchFacilities(pos.coords.latitude, pos.coords.longitude),
-          (err) => {
-            console.error('Geolocation error, using default Purdue Indy coordinates', err);
+          () => {
+            setError('Location access denied — showing facilities near Purdue Indianapolis campus.');
             fetchFacilities(39.7739, -86.1661);
           }
         );

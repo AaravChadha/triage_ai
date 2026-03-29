@@ -362,10 +362,10 @@ STATE 5: SUMMARY GENERATION
   - [x] 5.1.3 Responsive layout (works on laptop screen during demo)
   - [x] 5.1.4 Smooth transitions between chat, triage result, and facility list (done by Neil)
 
-- [ ] **5.2 Error Handling**
+- [x] **5.2 Error Handling**
   - [x] 5.2.1 Show friendly message if Groq API call fails — frontend now shows backend error detail with emergency instructions
-  - [ ] 5.2.2 Show friendly message if location access is denied
-  - [ ] 5.2.3 Prevent double-submitting messages
+  - [x] 5.2.2 Show friendly message if location access is denied — falls back to Purdue Indy coordinates with visible message
+  - [x] 5.2.3 Prevent double-submitting messages — send and analyze buttons disabled during loading
 
 ---
 
