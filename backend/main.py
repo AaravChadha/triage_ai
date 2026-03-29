@@ -66,7 +66,8 @@ async def chat(req: ChatRequest):
             messages=messages,
         )
         ai_message = response.choices[0].message.content
-    except Exception:
+    except Exception as e:
+        print(f"[CHAT ERROR] {type(e).__name__}: {e}")
         raise HTTPException(status_code=503, detail="AI service is temporarily unavailable. Please try again. If you are experiencing a medical emergency, call 911 immediately.")
 
     # AI detected emergency from context (prompt tells it to say EMERGENCY_DETECTED)

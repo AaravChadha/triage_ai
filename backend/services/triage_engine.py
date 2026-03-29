@@ -2,7 +2,7 @@ from pathlib import Path
 from groq import Groq
 from dotenv import load_dotenv
 
-load_dotenv(Path(__file__).parent.parent / ".env")
+load_dotenv(Path(__file__).parent.parent / ".env", override=True)
 
 client = Groq()
 MODEL = "llama-3.3-70b-versatile"
