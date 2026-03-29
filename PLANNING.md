@@ -388,9 +388,20 @@ STATE 5: SUMMARY GENERATION
   - [x] 6.2.4 Confirm repo is public on GitHub
 
 - [ ] **6.3 Final Checks**
-  - [ ] 6.3.1 Submit GitHub repo link to HackIndy submission portal
-  - [ ] 6.3.2 Verify the app runs from a fresh clone (after adding your own `.env` with Groq key)
-  - [ ] 6.3.3 Double-check README covers all submission requirements: description, tech stack, what was built, AI disclosure
+  - [ ] 6.3.1 Verify the app runs from a fresh clone (after adding your own `.env` with Groq key)
+  - [ ] 6.3.2 Double-check README covers all submission requirements: description, tech stack, what was built, AI disclosure
+
+---
+
+### Phase 6.5 — Devpost Submission `Sunday 3–4pm`
+> Goal: Submit to Devpost before deadline. Use README content as base.
+
+- [ ] **6.5.1** Create project on Devpost
+- [ ] **6.5.2** Write project overview (reuse README "What it does" + key features)
+- [ ] **6.5.3** Add tech stack and what was built during the event
+- [ ] **6.5.4** Add AI usage disclosure
+- [ ] **6.5.5** Link GitHub repo
+- [ ] **6.5.6** Add screenshots/demo video if time allows
 
 ---
 
