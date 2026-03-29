@@ -11,7 +11,7 @@ A patient describes their symptoms through a chat interface. The AI asks targete
 ### Key Features
 
 - **AI Triage Conversation** — clinical follow-up questions adapted to the type of injury or illness (pain, injury, illness, mental health)
-- **Emergency Detection** — two-layer system: instant keyword matching + AI context analysis. Detects emergencies like cardiac events, stroke, and severe bleeding. Includes "Why?" reasoning so patients can make informed decisions.
+- **Emergency Detection** — two-layer system: backend keyword matching + AI context analysis. Detects emergencies like cardiac events, stroke, and severe bleeding. Includes "Why?" reasoning so patients can make informed decisions.
 - **Atypical Symptom Awareness** — catches commonly missed patterns: women presenting heart attacks with abdominal pain, elderly confusion as infection, diabetic painless cardiac events, young adult stroke dismissed as migraine, falls masking underlying conditions
 - **6-Tier Severity Classification** — Call 911, ER, Urgent Care, Primary Care, Telehealth, Self-Care. Conservative by design (when in doubt, recommends higher tier)
 - **Facility Finder** — shows nearby facilities filtered by required capabilities and tier, sorted by wait time. Enforces a hard care level floor (never sends a serious case to a lower tier just because wait time is shorter)
