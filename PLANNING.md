@@ -419,13 +419,17 @@ STATE 5: SUMMARY GENERATION
 
 **Scenario 1 — Emergency (shows the safety feature):**
 > "It's 2am. Someone wakes up with chest tightness and mild shortness of breath."
-- User types symptoms → AI asks follow-ups → emergency alert fires → red full-screen banner, call 911
+- User types symptoms → AI asks follow-ups → emergency alert fires → red full-screen banner, call 911 → click "Why?" to show reasoning
 
 **Scenario 2 — Urgent Care (shows the full flow):**
 > "Stomach pain for 2 days, no fever, pain level 5/10."
-- AI asks follow-ups → recommends urgent care → shows 3 nearby facilities → generates patient summary
+- AI asks follow-ups → recommends urgent care → shows 3 nearby facilities → generates patient summary → send to facility
 
-This arc demonstrates every feature in under 3 minutes.
+**Scenario 3 — Atypical Cardiac in Women (shows what makes this system special):**
+> "55 year old woman with bad abdominal pain and nausea since this morning."
+- AI asks about chest pressure (catches atypical cardiac pattern) → patient confirms tightness → emergency fires → explain to judges: "Women often present heart attacks with abdominal pain, not chest pain. Even doctors miss this. Our system is trained to catch it."
+
+This arc demonstrates every feature in under 4 minutes. Scenario 3 is the strongest talking point for judges.
 
 ---
 
