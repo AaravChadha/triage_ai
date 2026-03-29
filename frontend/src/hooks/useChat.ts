@@ -28,10 +28,7 @@ export function useChat() {
     setMessages((prev: Message[]) => [...prev, userMessage]);
     setError(null);
 
-    if (checkEmergencyKeywords(content)) {
-      setIsEmergency(true);
-      return; 
-    }
+    const isKeywordEmergency = checkEmergencyKeywords(content);
 
     setIsLoading(true);
 
@@ -52,7 +49,7 @@ export function useChat() {
 
       const data: ChatResponse = await response.json();
       
-      if (data.is_emergency) {
+      if (data.is_emergency || isKeywordEmergency) {
          setIsEmergency(true);
          setEmergencyReasoning(data.emergency_reasoning || null);
       }
