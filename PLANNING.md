@@ -386,9 +386,9 @@ STATE 5: SUMMARY GENERATION
   - [x] 6.2.3 Remove any debug/test code — print() in /notify is intentional server logging
   - [x] 6.2.4 Confirm repo is public on GitHub
 
-- [ ] **6.3 Final Checks**
-  - [ ] 6.3.1 Verify the app runs from a fresh clone (after adding your own `.env` with Groq key)
-  - [ ] 6.3.2 Double-check README covers all submission requirements: description, tech stack, what was built, AI disclosure
+- [x] **6.3 Final Checks**
+  - [x] 6.3.1 Verify the app runs from a fresh clone — verified by Neil working from his own clone
+  - [x] 6.3.2 Double-check README covers all submission requirements: description, tech stack, what was built, AI disclosure — all present
 
 ---
 
