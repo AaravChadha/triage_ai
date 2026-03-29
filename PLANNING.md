@@ -381,11 +381,11 @@ STATE 5: SUMMARY GENERATION
   - [x] 6.1.5 Credit all libraries, APIs, and tools used
   - [x] 6.1.6 Setup instructions: clone → create `backend/.env` with your own `GROQ_API_KEY` (free at groq.com) → install → run
 
-- [ ] **6.2 Repo Cleanup**
-  - [ ] 6.2.1 Confirm `.env` is NOT committed (check with `git log --all -- '*.env'`)
-  - [ ] 6.2.2 Confirm `.env.example` exists with placeholder keys
-  - [ ] 6.2.3 Remove any debug/test code
-  - [ ] 6.2.4 Confirm repo is public on GitHub
+- [x] **6.2 Repo Cleanup**
+  - [x] 6.2.1 Confirm `.env` is NOT committed (check with `git log --all -- '*.env'`)
+  - [x] 6.2.2 Confirm `.env.example` exists with placeholder keys
+  - [x] 6.2.3 Remove any debug/test code — print() in /notify is intentional server logging
+  - [x] 6.2.4 Confirm repo is public on GitHub
 
 - [ ] **6.3 Final Checks**
   - [ ] 6.3.1 Submit GitHub repo link to HackIndy submission portal
