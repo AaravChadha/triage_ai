@@ -103,17 +103,8 @@ export function useChat() {
         }
       };
 
-      if (navigator.geolocation) {
-        navigator.geolocation.getCurrentPosition(
-          (pos) => fetchFacilities(pos.coords.latitude, pos.coords.longitude),
-          () => {
-            setError('Location access denied — showing facilities near Purdue Indianapolis campus.');
-            fetchFacilities(39.7739, -86.1661);
-          }
-        );
-      } else {
-        fetchFacilities(39.7739, -86.1661);
-      }
+      // Using Purdue Indianapolis LD Room 010 coordinates (402 N Blackford St)
+      fetchFacilities(39.7749, -86.1745);
 
       // Auto-fetch summary after triage
       const summaryRes = await fetch(`${API_BASE_URL}/summary`, {
