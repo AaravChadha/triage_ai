@@ -18,6 +18,11 @@ A patient describes their symptoms through a chat interface. The AI asks targete
 - **Pre-Arrival Patient Summary** — clinical-style handoff document with chief complaint, symptoms, severity, recommended care, and AI assessment. Uses preliminary language ("consistent with", "suspected") — never diagnoses.
 - **Send to Facility** — patient selects a facility and sends the summary before arriving, so staff can prepare
 
+## Team
+
+- **Aarav Chadha** — Team Lead, backend, AI prompt engineering, triage logic, UI polish
+- **Neil** — Frontend, facility service, UI components
+
 ## Tech Stack
 
 | Layer | Technology |
@@ -77,11 +82,6 @@ npm run dev
 ```
 
 Open http://localhost:5173 in your browser.
-
-## Team
-
-- **Aarav Chadha** — Team Lead, backend, AI prompt engineering, triage logic, UI polish
-- **Neil** — Frontend, facility service, UI components
 
 ## License
 
