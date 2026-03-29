@@ -374,7 +374,7 @@ STATE 5: SUMMARY GENERATION
 > Goal: Meet all HackIndy submission requirements before deadline.
 
 - [ ] **6.1 README.md**
-  - [ ] 6.1.1 Write project description — what it does and why it matters
+  - [x] 6.1.1 Write project description — what it does and why it matters
   - [ ] 6.1.2 List all technologies/frameworks used (React, Vite, Tailwind, FastAPI, Groq, llama-3.3-70b-versatile)
   - [ ] 6.1.3 Clear explanation of what was built during the event (not before)
   - [ ] 6.1.4 AI usage disclosure — list all AI tools used (Claude Code for development assistance, Groq API for triage AI). Be specific about what each tool did. Do NOT misrepresent AI-generated code as hand-written.
