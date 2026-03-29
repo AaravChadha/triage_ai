@@ -356,12 +356,11 @@ STATE 5: SUMMARY GENERATION
 ### Phase 5 — Polish and Demo Prep `Sunday 1pm → 4pm` (~1–2 hrs)
 > Goal: The happy path is flawless and the app looks good in front of judges. The four things judges will evaluate: (1) Groq conversation flow with follow-ups, (2) emergency detection with full-screen alert, (3) triage classification with clear severity output, (4) patient summary generation.
 
-- [ ] **5.1 UI Polish**
-  - [ ] 5.1.1 Consistent color scheme and typography
-    > **Ask before building:** Confirm the color palette — suggested: red = ER, orange = urgent care, yellow = primary care, blue = telehealth, green = self-care. Any brand preferences?
-  - [ ] 5.1.2 App header with name and tagline
+- [x] **5.1 UI Polish**
+  - [x] 5.1.1 Consistent color scheme and typography — red=ER, orange=urgent, yellow=primary, green=telehealth/self-care (done by Neil)
+  - [x] 5.1.2 App header with name and tagline (done by Neil)
   - [ ] 5.1.3 Responsive layout (works on laptop screen during demo)
-  - [ ] 5.1.4 Smooth transitions between chat, triage result, and facility list
+  - [x] 5.1.4 Smooth transitions between chat, triage result, and facility list (done by Neil)
 
 - [ ] **5.2 Error Handling**
   - [ ] 5.2.1 Show friendly message if Groq API call fails — backend already returns 503 with emergency instructions, frontend needs to display it
