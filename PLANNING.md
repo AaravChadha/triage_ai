@@ -359,7 +359,7 @@ STATE 5: SUMMARY GENERATION
 - [x] **5.1 UI Polish**
   - [x] 5.1.1 Consistent color scheme and typography — red=ER, orange=urgent, yellow=primary, green=telehealth/self-care (done by Neil)
   - [x] 5.1.2 App header with name and tagline (done by Neil)
-  - [ ] 5.1.3 Responsive layout (works on laptop screen during demo)
+  - [x] 5.1.3 Responsive layout (works on laptop screen during demo)
   - [x] 5.1.4 Smooth transitions between chat, triage result, and facility list (done by Neil)
 
 - [ ] **5.2 Error Handling**
